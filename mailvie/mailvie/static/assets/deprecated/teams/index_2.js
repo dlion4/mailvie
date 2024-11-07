@@ -1,0 +1,2 @@
+document.addEventListener("turbo:load",function(){if(!App.currentPageIs("teams","index")){return;}
+return $("#teams-invites-form").on("submit",function(){App.analytics.ga_track("Team","Invite with email");return true;});});

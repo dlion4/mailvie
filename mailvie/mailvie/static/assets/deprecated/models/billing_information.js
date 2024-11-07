@@ -1,0 +1,1 @@
+const BillingInformationModel = Backbone.Model.extend({ urlRoot: "/billing-information", paramRoot: "billing_information" }); document.addEventListener("turbo:load", () => App.billing_information = new BillingInformationModel());

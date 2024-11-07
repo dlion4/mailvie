@@ -1,0 +1,14 @@
+# curl -X POST "https://api.eu.svix.com/api/v1/app/" \
+#     -H  "Accept: application/json" \
+#     -H  "Content-Type: application/json" \
+#     -H  "Authorization: Bearer testsk_mIZnpsGN28nJzZbbuvxaPsCqAawYJ24i.eu" \
+#     -d '{"name": "My first app", "uid": "74hw"}'
+
+curl -X POST "https://api.eu.svix.com/api/v1/app/74hw/msg/" \
+    -H  "Accept: application/json" \
+    -H  "Content-Type: application/json" \
+    -H  "Authorization: Bearer testsk_mIZnpsGN28nJzZbbuvxaPsCqAawYJ24i.eu" \
+    -d '{
+      "eventType": "invoice.paid", 
+      "data": {"id": "invoice_WF7WtC", "status": "paid", "attempt": 1}
+    }'

@@ -1,0 +1,21 @@
+[
+    {
+        "FAQData": [
+            {
+                "id": "faq01",
+                "question": "I just want to use Hunter once to export data. Is it possible?",
+                "answer": "Yes. You're free to take a subscription just for one month and cancel it when your work is done."
+            },
+            {
+                "id": "faq02",
+                "question": "Can I cancel my subscription whenever I want?",
+                "answer": "Yes, you can change or cancel your plan at any time in your dashboard. Once you have canceled, you'll still have access to your premium plan until the end of your subscription cycle."
+            },
+            {
+                "id": "faq03",
+                "question": "Can I share my subscription with my team?",
+                "answer": "Yes! You are free to add team members to share your subscription with. In this case, all the members will share the common monthly quotas provided in the plan."
+            }
+        ]
+    }
+]

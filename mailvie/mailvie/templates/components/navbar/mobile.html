@@ -1,0 +1,147 @@
+{% load static %}
+
+
+    <button aria-controls="mobile-locale-switcher" aria-expanded="false" aria-label="change language" class="locale-switcher__trigger" data-action="click-&gt;mobile-navigation#toggle" data-mobile-navigation-target="trigger" type="button">
+        <i class="far fa-globe"></i>
+    </button>
+    <div class="mobile-locale-switcher" id="mobile-locale-switcher">
+        <ul class="locale-switcher-languages">
+            <li class="locale-switcher-languages__item">
+                <span aria-current="page" class="locale-switcher-languages__name">English</span>
+            </li>
+            <li class="locale-switcher-languages__item">
+                <a class="locale-switcher-languages__name" data-action="click-&gt;locale-switch#click" data-controller="locale-switch" href="fr.html" hreflang="fr" lang="fr">
+                    Français
+                </a>
+            </li>
+        </ul>
+    </div>
+    <button aria-controls="mobile-navigation" aria-expanded="false" class="mobile-nav-trigger" data-action="click-&gt;mobile-navigation#toggle" data-mobile-navigation-target="trigger" type="button">
+        <div class="mobile-nav-trigger__burger"></div>
+        <span class="sr-only">Toggle navigation</span>
+    </button>
+    <nav aria-hidden="true" class="mobile-main-nav" id="mobile-navigation" role="navigation">
+        <ul class="mobile-user-menu">
+            <li class="mobile-user-menu__item">
+                <a class="h-button h-button--block h-button--sm" data-turbo="false" href="users/sign_in.html">
+                    Log in
+                </a>
+            </li>
+            <li class="mobile-user-menu__item">
+                <a class="h-button h-button--block h-button--sm h-button--primary" data-turbo="false" href="users/sign_up.html">
+                    Create an account
+                </a>
+            </li>
+        </ul>
+        <ul class="mobile-main-menu">
+            <li class="mobile-main-menu__item">
+                <button aria-controls="mobile-products-submenu" aria-expanded="true" class="mobile-main-menu__link" data-action="click-&gt;mobile-navigation#toggleSubmenu" type="button">
+                    Product
+                    <span class="mobile-main-menu__carret far fa-angle-down"></span>
+                </button>
+                <div aria-hidden="false" class="mobile-submenu" id="mobile-products-submenu">
+                    <a class="mobile-submenu-feature" href="cold-email-software.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-campaign"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Campaigns</strong>
+                            <span class="mobile-submenu-feature__desc">Send cold emails.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="b2b-database.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-company-discover"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Discover</strong>
+                            <span class="mobile-submenu-feature__desc">Find B2B leads.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="domain-search.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-domain-search"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Domain Search</strong>
+                            <span class="mobile-submenu-feature__desc">Find email addresses of a company.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="email-finder.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-email-finder"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Email Finder</strong>
+                            <span class="mobile-submenu-feature__desc">Find any professional&#39;s email address.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="email-verifier.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-email-verifier"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Email Verifier</strong>
+                            <span class="mobile-submenu-feature__desc">Check the validity of an email address.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="intent-data.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <span aria-hidden="true" class="fal fa-radar highlighted-icon__icon"></span>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Signals</strong>
+                            <span class="mobile-submenu-feature__desc">Find prospects using intent data.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="integrations.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-integrations"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">Integrations</strong>
+                            <span class="mobile-submenu-feature__desc">Connect to your favorite application.</span>
+                        </div>
+                    </a>
+                    <a class="mobile-submenu-feature" href="api.html">
+                        <div class="highlighted-icon highlighted-icon--sm mobile-submenu-feature__icon">
+                            <svg class="highlighted-icon__icon">
+                                <use xlink:href="#icon-api"></use>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong class="mobile-submenu-feature__title">API</strong>
+                            <span class="mobile-submenu-feature__desc">Integrate Hunter into your workflow.</span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+            <li class="mobile-main-menu__item">
+                <a class="mobile-main-menu__link" href="data-platform.html">Data Platform</a>
+            </li>
+            <li class="mobile-main-menu__item">
+                <a class="mobile-main-menu__link" href="pricing.html">Pricing</a>
+            </li>
+            <li class="mobile-main-menu__item">
+                <a class="mobile-main-menu__link" href="blog/index.htm">Hunter Blog</a>
+            </li>
+            <li class="mobile-main-menu__item">
+                <a class="mobile-main-menu__link" href="about.html">About us</a>
+            </li>
+            <li class="mobile-main-menu__item">
+                <a class="mobile-main-menu__link" href="our-data.html">Our data</a>
+            </li>
+        </ul>
+    </nav>

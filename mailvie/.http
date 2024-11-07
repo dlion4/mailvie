@@ -1,0 +1,20 @@
+# curl -X 'POST' \
+#   'http://127.0.0.1:8004/api/tags/' \
+#   -H 'accept: application/json' \
+#   -H 'Content-Type: application/json' \
+#   -H 'X-CSRFTOKEN: r4Ck38JPMFEvL4yeTi4MKuriWDyjj6ZMRqTlLvs8sfX8BHBqqtHZtoYIsxfqzMbL' \
+#   -d '{
+#   "name": "Growth"
+# }'
+
+# curl http://127.0.0.1:8004/api/tags/
+
+curl -X 'POST' \
+  'http://127.0.0.1:8004/api/tags/1/blogs/' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -H 'X-CSRFTOKEN: r4Ck38JPMFEvL4yeTi4MKuriWDyjj6ZMRqTlLvs8sfX8BHBqqtHZtoYIsxfqzMbL' \
+  -d '{
+  "title": "6 Lead Generation Tools for Small Businesses",
+  "content": "Lead generation is all about finding people who might be interested in what you are offering. For small and medium-sized businesses, generating leads can feel intimidating because there are so many channels to explore and a variety of tools for each one. Building a consistent process for lead generation—rather than diving in only when the sales pipeline runs dry—can be especially challenging. In this article, I’ll walk you through essential lead generation methods for small businesses and recommend top tools tailored to SMB needs."
+}'

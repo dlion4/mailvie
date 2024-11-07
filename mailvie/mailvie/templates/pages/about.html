@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+
+<!-- Heder component -->
+{% block header %}
+{% include "components/navbar/index.html" %}
+
+{% endblock header %}
+
+{% block body %}
+
+<!-- Mount the react application -->
+<section class='generic-hero about-hero'>
+    <div class='container-fluid'>
+        <h1 class='generic-hero__title'>About us</h1>
+        <p class='generic-hero__subtitle generic-hero__subtitle--lg'>
+            <strong>We simplify email outreach</strong>
+            <br class="hidden-xs">to help organizations grow.
+        </p>
+    </div>
+</section>
+
+<section class='section mt-20'>
+    <div class='container-fluid'>
+        <p class='section__description section__description--lg mb-16'>Hunter is an all-in-one email outreach platform. We help marketers, salespeople, recruiters, and anyone else who wants to connect with more people using emails.</p>
+        <div class='row justify-content-end'>
+            <div class='col-sm-4 col-md-3'>
+                <div class='stat-highlight stat-highlight--sm'>
+                    <strong class='stat-highlight__title'>2015</strong>
+                    Hunter launched
+                </div>
+            </div>
+            <div class='col-sm-4 col-md-3'>
+                <div class='stat-highlight stat-highlight--sm'>
+                    <strong class='stat-highlight__title'>+5M</strong>
+                    user accounts
+                </div>
+            </div>
+            <div class='col-sm-4'>
+                <div class='stat-highlight stat-highlight--sm'>
+                    <strong class='stat-highlight__title'>76M</strong>
+                    websites indexed
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class='h-separator h-separator--sm my-10'>
+<section class='section'>
+    <div class='container-fluid container-fluid--xxs'>
+        <h2 class='section__title mt-0'>Our story.</h2>
+        <div class='section__description'>
+            <p>Hunter was created by Antoine Finkelstein and François Grante in 2015. Freshly graduated, they saw the untapped potential of cold emails and wanted to address the challenges of prospecting and finding contact information. To achieve great success rate while complying with privacy regulations, they decided to use emails found on the public web. Email Hunter was born.</p>
+            <p>Soon rebranded as Hunter, the tool quickly became a game-changer in business intelligence. Within weeks, it attracted thousands of users thanks to its user-friendly interface, handy browser extension, affordable pricing, and data accuracy. Unlike its peers, Hunter aimed not at large enterprises but at making cold emailing accessible to all.</p>
+            <p>Over time, Hunter grew into a comprehensive email outreach platform, offering everything from finding contact information to sending cold emails. Antoine and François, with a focused team, continued to empower professionals with simple, powerful tools.</p>
+        </div>
+    </div>
+</section>
+<hr class='h-separator h-separator--sm my-10'>
+
+<section class='customers-logos customers-logos--light section mb-20' id="our-customer-logo-about-page"></section>
+
+<section class='section section--primary-light our-team' id="our-team-section-page"></section>
+
+<section class='section mt-20 mb-6'>
+    <div class='container-fluid'>
+        <h2 class='section__title mb-20'>Our values.</h2>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-rocket'></span>
+                    <h3 class='value-block__title'>Move fast and help others move fast.</h3>
+                    <p class='value-block__description'>We prioritize building the features our users absolutely need, as fast as possible.</p>
+                </article>
+            </div>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-sparkles'></span>
+                    <h3 class='value-block__title'>Push for simplicity.</h3>
+                    <p class='value-block__description'>We believe the simplest products have the most significant impact.</p>
+                </article>
+            </div>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-lightbulb'></span>
+                    <h3 class='value-block__title'>No ego: The best idea wins.</h3>
+                    <p class='value-block__description'>We&#39;re open to constructive debate to make the best decisions collectively.</p>
+                </article>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-eye'></span>
+                    <h3 class='value-block__title'>Transparent by default.</h3>
+                    <p class='value-block__description'>We build a transparent product and run our company the same way, contributing to a more open professional landscape.</p>
+                </article>
+            </div>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-seedling'></span>
+                    <h3 class='value-block__title'>Have a disproportionate impact.</h3>
+                    <p class='value-block__description'>As a small team, we build simple and accessible products that bring value to millions of people globally.</p>
+                </article>
+            </div>
+            <div class='col-sm-4'>
+                <article class='value-block'>
+                    <span aria-hidden='true' class='value-block__icon fal fa-heart'></span>
+                    <h3 class='value-block__title'>Care about our users&#39; experience.</h3>
+                    <p class='value-block__description'>We take the experience of our users very seriously and never let issues go unanswered.</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class='section section--primary careers-cta'>
+    <div class='container-fluid'>
+        <header class='section__header mb-0'>
+            <h2 class='section__title'>Work at Hunter.</h2>
+            <p class='section__description mb-10'>We&#39;re looking for talented people to join us and build the future of Hunter.</p>
+            <a class='h-button' href='careers.html'>View open positions</a>
+        </header>
+    </div>
+</section>
+
+{% endblock body %}
+
+
+{% block footer %}
+{% include "components/footer.html" %}
+{% endblock footer %}

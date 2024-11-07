@@ -33,6 +33,8 @@ This project is built using a full-stack approach with several independent servi
 The application is composed of multiple services, each running on a different port. Below is a list of the ports associated with each service:
 
 ### Service Breakdown:
+---
+#### Use the folling (number) as the port number to run the services
 - **auth (5173)**: Authentication service for managing API access and user management.
 - **mailvie (9003)**: Core mail validation service responsible for validating email formats, domains, and existence.
 - **mailvie_dashboard (9001)**: Dashboard for viewing the results of email validations and managing the system status.

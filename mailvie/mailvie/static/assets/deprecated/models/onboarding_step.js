@@ -1,0 +1,1 @@
+const OnboardingStepModel=Backbone.Model.extend({urlRoot:"/onboarding/steps",paramRoot:"onboarding_step"});document.addEventListener("turbo:load",()=>App.onboardingStep=new OnboardingStepModel());

@@ -1,0 +1,10 @@
+{% load static %}
+
+<header class="main-header" data-controller="main-header" id="main-header" role="banner">
+    <div class="main-header__inner">
+       {% include "components/navbar/desktop.html" %}
+    </div>
+    <div class="mobile-nav" data-controller="mobile-navigation">
+        {% include "components/navbar/mobile.html" %}
+    </div>
+</header>

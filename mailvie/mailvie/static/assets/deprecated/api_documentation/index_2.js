@@ -1,0 +1,2 @@
+const changeApiVersion=()=>$(".api-version-selection select").change(function(){return window.location=$(this).val();});document.addEventListener("turbo:load",function(){if(!App.currentPageIs("v1","index")&&!App.currentPageIs("v2","index")){return;}
+return changeApiVersion();});
