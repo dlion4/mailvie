@@ -1,0 +1,205 @@
+{% extends 'layout.html' %} {% load static %}
+
+<!-- body css -->
+{% block bodyclass %}{% endblock bodyclass %} 
+<!--  -->
+{% block body %}
+<!--  -->
+{% block stickyHeader %}
+<div class="fixed-header">
+  <div class="container header-inner">
+    <div class="col-lg-6 col-md-6">
+      <a href="">
+        <button class="btn btn-upload btn-login">
+          <img
+            height="16px"
+            width="16px"
+            class="v-middle"
+            alt="check"
+            src="{% static 'img/svg/check_add.svg' %}"
+          />
+          Upload file
+        </button>
+      </a>
+    </div>
+    <div class="col-lg-6 col-md-6 clearfix">
+      <div class="dropdown f-right">
+        <button
+          class="btn dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+        >
+          inctifra <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+          <li role="presentation">
+            <a>User ID: <strong class="digit">68696</strong></a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="settings.html">Settings</a>
+          </li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="support.html">Feedback</a>
+          </li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation">
+            <a role="menuitem" tabindex="-1" href="">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock stickyHeader %}
+
+
+<div class="admin-container clearfix">
+  
+  {% block content %}
+    
+<!-- main content -->
+ 
+{% block center %}
+{% endblock center %}
+
+<!-- sidebar navbar -->
+
+    <div class="admin-nav-container">
+        <ul>
+          <div class="top-container clearfix">
+            <a href="https://proofy.io/">
+              <li class="nav-item-logo f-left transition">
+                <img class="logo-icon" src="{% static 'img/svg/logo_icon.svg' %}" alt="logo" />
+              </li>
+            </a>
+            <a href="https://app.proofy.io/billing">
+              <div
+                class="counter-container transition clearfix f-left it-block"
+              >
+                <img
+                  height="22px"
+                  width="22px"
+                  alt="active check"
+                  class="v-middle f-left"
+                  src="{% static 'img/svg/check_active.svg' %}"
+                />
+                <div
+                  class="b-radius-tr f-left b-radius-br check-counter it-block"
+                >
+                  <span class="digit balance-user">98</span>
+                  checks
+                </div>
+              </div>
+            </a>
+          </div>
+          <a class="color-w-d f-small-13 {% if request.resolver_match.view_name == 'home' %}current{% endif %}" href="{% url 'home' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="dashboard"
+                src="{% static 'img/svg/m_dashboard_ic.svg' %}"
+              />
+              <span>Dashboard</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13 {% if request.resolver_match.view_name == 'email_verify_view' %}current{% endif %}" href="{% url 'email_verify_view' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="upload"
+                src="{% static 'img/svg/m_upload_ic.svg' %}"
+              />
+              <span>Verify Emails</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13 {% if request.resolver_match.view_name == 'api_key_view' %}current{% endif %}" href="{% url 'api_key_view' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="api"
+                src="{% static 'img/svg/m_api_ic.svg' %}"
+              />
+              <span>Verify API</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13 {% if request.resolver_match.view_name == 'email_list_verify_view' %}current{% endif %}" href="{% url 'email_list_verify_view' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="item"
+                src="{% static 'img/svg/m_list_ic.svg' %}"
+              />
+              <span>Files</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13  {% if request.resolver_match.view_name == 'billing_view' %}current{% endif %}" href="{% url 'billing_view' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="billing"
+                src="{% static 'img/svg/m_billing_ic.svg' %}"
+              />
+              <span>Billing</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13 {% if request.resolver_match.view_name == 'account_setting_view' %}current{% endif %}" href="{% url 'account_setting_view' %}">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="setting"
+                src="{% static 'img/svg/m_settings_ic.svg' %}"
+              />
+              <span>Settings</span>
+            </li>
+          </a>
+          <a class="color-w-d f-small-13" href="https://proofy.io/using-api">
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="docs"
+                src="{% static 'img/svg/m_doc_ic.svg' %}"
+              />
+              <span>Documentation</span>
+            </li>
+          </a>
+          <a
+            class="color-w-d f-small-13 bottom"
+            href="https://app.proofy.io/support"
+          >
+            <li class="nav-item transition">
+              <img
+                class="v-middle nav-item-icon"
+                alt="support"
+                src="{% static 'img/svg/m_support_ic.svg' %}"
+              />
+              <span>Support</span>
+            </li>
+          </a>
+          <center>
+            <a
+              href="https://proofy.io/guide-get-free-credits-mass-validation-email-database-service-proofy-io/"
+              target="_blank"
+              title="target"
+            >
+              <button
+                class="btn btn-login btn-primary"
+                style="border-radius: 8px"
+              >
+                <font size="+2">Get Free Checks</font><br />Up to 100k Credits
+              </button>
+            </a>
+          </center>
+        </ul>
+        <div class="copyright">
+          <span class="color-light">Copyright ©2024 Mailvie.</span>
+        </div>
+      </div>
+
+  {% endblock content %}
+    
+</div>
+
+
+<!--  -->
+{% endblock body %}

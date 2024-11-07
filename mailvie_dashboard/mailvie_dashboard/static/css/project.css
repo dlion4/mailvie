@@ -1,0 +1,26 @@
+/* These styles are generated from project.scss. */
+
+.alert-debug {
+  color: black;
+  background-color: white;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+html,
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@import url("./bootstrap.css");
+@import url("./base.css");

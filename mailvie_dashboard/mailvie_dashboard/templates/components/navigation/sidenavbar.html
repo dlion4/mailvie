@@ -1,0 +1,253 @@
+{% load static %}
+
+<header class='l-header'>
+    <div class='app-header' data-navigation-back-target='header'>
+        <a title="navbar" class='app-header__logo' href="{% url 'home' %}">
+           {% include 'components/navigation/logo.html' %}
+        </a>
+        <!-- mobile navigation -->
+        <nav class='app-main-nav'>
+            <ul class='app-main-menu app-main-menu--mobile'>
+                <li class='app-main-menu__item'>
+                    <a aria-label='Search' class='app-main-menu__link' href='/search'>
+                        <div class='app-main-menu__icon'>
+                            <svg aria-hidden='true'>
+                                <use xlink:href='#icon-domain-search'></use>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li class='app-main-menu__item'>
+                    <a aria-label='Finder' class='app-main-menu__link' href='/find'>
+                        <div class='app-main-menu__icon'>
+                            <svg aria-hidden='true'>
+                                <use xlink:href='#icon-email-finder'></use>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+                <li class='app-main-menu__item'>
+                    <a aria-label='Verifier' class='app-main-menu__link' href='/verify'>
+                        <div class='app-main-menu__icon'>
+                            <svg aria-hidden='true'>
+                                <use xlink:href='#icon-email-verifier'></use>
+                            </svg>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class='hidden-xs hidden-sm'>
+                <strong class='app-main-nav__category'>Data</strong>
+                <ul class='app-main-menu'>
+                    <li class='app-main-menu__item' href="">
+                        <a href="{% url 'home' %}" class='app-main-menu__link {% if request.resolver_match.view_name == "home" %}is-active{% endif %}'>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-company-discover'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Discover</span>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link' href="">
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-email-finder'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Finder</span>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link {% if request.resolver_match.view_name == "email_verify_view" %}is-active{% endif %}' href='{% url "email_verify_view" %}'>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-email-verifier'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Verifier</span>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item' id='bulks-nav-link'>
+                        <a class='app-main-menu__link' data-turbo-prefetch='false' href=''>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-bulk'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Bulks</span>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link' data-turbo-prefetch='false' href=''>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-signals'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Signals</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class='h-separator my-4 mx-2'>
+                <strong class='app-main-nav__category'>Outreach</strong>
+                <ul class='app-main-menu'>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link' data-turbo-frame='_top' href=''>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-crm'></use>
+                                </svg>
+                            </div>
+                            <div class='app-main-menu__label'>Leads</div>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link' href=''>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-campaign'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>Campaigns</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr class='h-separator my-4 mx-2'>
+                <strong class='app-main-nav__category'>Integrations</strong>
+                <ul class='app-main-menu'>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link' href=''>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-integrations'></use>
+                                </svg>
+                            </div>
+                            <div class='app-main-menu__label'>Integrations</div>
+                        </a>
+                    </li>
+                    <li class='app-main-menu__item'>
+                        <a class='app-main-menu__link {% if request.resolver_match.view_name == "api_key_view" %}is-active{% endif %}' href='{% url "api_key_view" %}'>
+                            <div class='app-main-menu__icon'>
+                                <svg aria-hidden='true'>
+                                    <use xlink:href='#icon-api'></use>
+                                </svg>
+                            </div>
+                            <span class='app-main-menu__label'>API</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- notification -->
+        <nav class='support-nav hidden-xs hidden-sm'>
+            <ul class='support-menu'>
+                <li class='support-menu__item'>
+                    <button class='support-menu__link' disabled="" type='button'>
+                        <span aria-hidden='true' class='support-menu__icon far fa-bell'></span>
+                        <span class='support-menu__label'>Notifications</span>
+                    </button>
+                </li>
+                <li class='support-menu__item'>
+                    <button aria-label='Open help and resources' class='support-menu__link'>
+                        <span aria-hidden='true' class='support-menu__icon far fa-question-circle'></span>
+                        <span class='support-menu__label'>Support</span>
+                    </button>
+                </li>
+                <li class='support-menu__item'>
+                    <a aria-label='Open help and resources' class='support-menu__link' href="{% url 'subscription_view' %}">
+                        <span aria-hidden='true' class='support-menu__icon far fa-question-circle'></span>
+                        <span class='support-menu__label'>Subscription</span>
+                    </a>
+                </li>
+                <li aria-controls='app-menu-user' class='support-menu__item support-menu__item--user mt-2' id='toggle-app-menu-user'>
+                    <button aria-label='Open account menu' class='support-menu__link support-menu__link--user' type='button'>
+                        <img alt='Profile picture' class='support-menu__avatar' data-turbo-permanent='true'>
+                        <div class='support-menu-user'>
+                            <span class='support-menu-user__name'>
+                                Daniel M.
+                            </span>
+                            <span class='support-menu-user__plan'>Free plan</span>
+                        </div>
+                    </button>
+                    <section class='app-main-user-subnav active'>
+                        <ul class='app-main-submenu'>
+                            <li class='app-main-submenu__item'>
+                                <a class='app-main-submenu__link' href='/users/edit'>
+                                    Account
+                                </a>
+                            </li>
+                            <li class='app-main-submenu__item'>
+                                <a class='app-main-submenu__link' href='/teams'>
+                                    Team
+                                </a>
+                            </li>
+                            <li class='app-main-submenu__item'>
+                                <a class='app-main-submenu__link' href='{% url "subscription_view" %}'>
+                                    Subscription
+                                </a>
+                            </li>
+                        </ul>
+                        <hr class='app-main-submenu__divider mb-2'>
+                        <div class='app-main-nav-quotas'>
+                            <a class='app-main-nav-quotas__header' href='/usage'>
+                                <strong class='app-main-nav-quotas__title'>Usage</strong>
+                                <span aria-hidden='true' class='app-main-nav-quotas__icon far fa-arrow-right'></span>
+                            </a>
+                            <div class='app-main-nav-quota'>
+                                <div class='app-main-nav-quota__header'>
+                                    <strong class='app-main-nav-quota__title'>Searches</strong>
+                                    <span class='app-main-nav-quota__credits current-search-requests'>
+                                        <span class='far fa-spinner-third fa-spin'></span>
+                                    </span>
+                                </div>
+                                <div class='app-main-nav-quota__bar'>
+                                    <div class='app-main-nav-quota__bar-used is-loading used-search-requests-level'></div>
+                                    <div class='app-main-nav-quota__bar-overage d-none overage-search-requests-level'></div>
+                                </div>
+                                <div class='app-main-nav-quota__credits mt-1 text-end d-none used-search-overage-requests'></div>
+                            </div>
+                            <div class='app-main-nav-quota'>
+                                <div class='app-main-nav-quota__header'>
+                                    <strong class='app-main-nav-quota__title'>Verifications</strong>
+                                    <span class='app-main-nav-quota__credits current-verify-requests'>
+                                        <span class='far fa-spinner-third fa-spin'></span>
+                                    </span>
+                                </div>
+                                <div class='app-main-nav-quota__bar'>
+                                    <div class='app-main-nav-quota__bar-used is-loading used-verify-requests-level'></div>
+                                    <div class='app-main-nav-quota__bar-overage d-none overage-verify-requests-level'></div>
+                                </div>
+                                <div class='app-main-nav-quota__credits mt-1 text-end d-none used-verify-overage-requests'></div>
+                            </div>
+                            <div class='app-main-nav-quota__info'>
+                                Quotas reset in 30 days.
+                            </div>
+                            <div class='mt-4'>
+                                <a class='h-button h-button--primary h-button--block' href='/welcome/upgrade?from=dashboard_navigation'>
+                                    <div class='far fa-arrow-alt-circle-up'></div>
+                                    Upgrade
+                                </a>
+                            </div>
+                        </div>
+                        <hr class='app-main-submenu__divider'>
+                        <ul class='app-main-submenu'>
+                            <li class='app-main-submenu__item'>
+                                <a class='app-main-submenu__link' href='/home'>
+                                    <span class='app-main-submenu__label'>Homepage</span>
+                                    <span aria-hidden='true' class='app-main-submenu__suffix far fa-arrow-up-right'></span>
+                                </a>
+                            </li>
+                            <li class='app-main-submenu__item'>
+                                <a data-turbo-method="delete" class="app-main-submenu__link" rel="nofollow" data-method="delete" href="/users/sign_out"><span class='app-main-submenu__label'>Log out</span>
+                                    <span aria-hidden='true' class='app-main-submenu__suffix far fa-arrow-right-from-bracket'></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block center %}
+<div class="container row">
+  <div class="col-lg-12">
+    <div id="alerts"></div>
+  </div>
+  <div class="page-snippet clearfix">
+    <div class="col-lg-12">
+      <h1 class="p-title">Billing</h1>
+    </div>
+
+    <div class="clearfix col-lg-12">
+      <ul class="nav nav-tabs clearfix" role="tablist">
+        <li role="presentation" class="active">
+          <a href="#plans" aria-controls="plans" role="tab" data-toggle="tab"
+            >Plans</a
+          >
+        </li>
+        <li role="presentation" class="">
+          <a
+            href="#invoices"
+            aria-controls="invoices"
+            role="tab"
+            data-toggle="tab"
+            >Invoices</a
+          >
+        </li>
+        <li role="presentation" class="">
+          <a
+            href="#history"
+            aria-controls="history"
+            role="tab"
+            data-toggle="tab"
+            >Purchase history</a
+          >
+        </li>
+        <li role="presentation" class="">
+          <a
+            href="#balances"
+            aria-controls="balances"
+            role="tab"
+            data-toggle="tab"
+            >Balance history</a
+          >
+        </li>
+        <li class="">
+          <a aria-controls="messages" role="tab" data-toggle="tab">
+            <img
+              height="22px"
+              width="22px"
+              class="item-icon v-middle"
+              src="{% static 'img/svg/check_active.svg' %}"
+            />
+            Checks left:
+            <strong class="digit dark-text balance-user">92</strong>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <!--PRICING-->
+        <div role="tabpanel" class="tab-pane active" id="plans">
+          {% include 'pages/components/tabs/billing/plans.html' %}
+        </div>
+
+        <!--INVOICES-->
+        <div role="tabpanel" class="tab-pane" id="invoices">
+          {% include 'pages/components/tabs/billing/plans.html' %}
+        </div>
+
+        <!--PURCHASE HISTORY-->
+        <div
+          role="tabpanel"
+          class="tab-pane"
+          id="history"
+          style="padding-top: 0px"
+        >
+          {% include 'pages/components/tabs/billing/history.html' %}
+        </div>
+        <!--BALANCE HISTORY-->
+        <div role="tabpanel" class="tab-pane" id="balances">
+          {% include 'pages/components/tabs/billing/balances.html' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock center %}
+<!--  -->
+{% block inline_javascript %}
+<!--  -->
+
+<script>
+  var prices = new Object();
+  prices["1"] = new Object();
+  prices["1"]["cost"] = 5;
+  prices["1"]["checks_count"] = 1000;
+  prices["1"]["cost_per_check"] = 0.005;
+  prices["1"]["link"] = "https://app.proofy.io/bill/?code=u1000";
+  prices["2"] = new Object();
+  prices["2"]["cost"] = 10;
+  prices["2"]["checks_count"] = 2500;
+  prices["2"]["cost_per_check"] = 0.004;
+  prices["2"]["link"] = "https://app.proofy.io/bill/?code=u2500";
+  prices["2"]["save"] = 20;
+  prices["3"] = new Object();
+  prices["3"]["cost"] = 16;
+  prices["3"]["checks_count"] = 5000;
+  prices["3"]["cost_per_check"] = 0.0032;
+  prices["3"]["link"] = "https://app.proofy.io/bill/?code=u5000";
+  prices["3"]["save"] = 36;
+  prices["4"] = new Object();
+  prices["4"]["cost"] = 29;
+  prices["4"]["checks_count"] = 10000;
+  prices["4"]["cost_per_check"] = 0.0029;
+  prices["4"]["link"] = "https://app.proofy.io/bill/?code=u10000";
+  prices["4"]["save"] = 42;
+  prices["5"] = new Object();
+  prices["5"]["cost"] = 63;
+  prices["5"]["checks_count"] = 30000;
+  prices["5"]["cost_per_check"] = 0.0021;
+  prices["5"]["link"] = "https://app.proofy.io/bill/?code=u30000";
+  prices["5"]["save"] = 58;
+  prices["6"] = new Object();
+  prices["6"]["cost"] = 99;
+  prices["6"]["checks_count"] = 50000;
+  prices["6"]["cost_per_check"] = 0.002;
+  prices["6"]["link"] = "https://app.proofy.io/bill/?code=u50000";
+  prices["6"]["save"] = 60;
+  prices["7"] = new Object();
+  prices["7"]["cost"] = 124;
+  prices["7"]["checks_count"] = 70000;
+  prices["7"]["cost_per_check"] = 0.0018;
+  prices["7"]["link"] = "https://app.proofy.io/bill/?code=u70000";
+  prices["7"]["save"] = 65;
+  prices["8"] = new Object();
+  prices["8"]["cost"] = 149;
+  prices["8"]["checks_count"] = 100000;
+  prices["8"]["cost_per_check"] = 0.0015;
+  prices["8"]["link"] = "https://app.proofy.io/bill/?code=u100000";
+  prices["8"]["save"] = 70;
+  prices["9"] = new Object();
+  prices["9"]["cost"] = 229;
+  prices["9"]["checks_count"] = 200000;
+  prices["9"]["cost_per_check"] = 0.0011;
+  prices["9"]["link"] = "https://app.proofy.io/bill/?code=u200000";
+  prices["9"]["save"] = 77;
+  prices["10"] = new Object();
+  prices["10"]["cost"] = 289;
+  prices["10"]["checks_count"] = 300000;
+  prices["10"]["cost_per_check"] = 0.001;
+  prices["10"]["link"] = "https://app.proofy.io/bill/?code=u300000";
+  prices["10"]["save"] = 81;
+  prices["11"] = new Object();
+  prices["11"]["cost"] = 429;
+  prices["11"]["checks_count"] = 500000;
+  prices["11"]["cost_per_check"] = 0.0009;
+  prices["11"]["link"] = "https://app.proofy.io/bill/?code=u500000";
+  prices["11"]["save"] = 83;
+  prices["12"] = new Object();
+  prices["12"]["cost"] = 699;
+  prices["12"]["checks_count"] = 1000000;
+  prices["12"]["cost_per_check"] = 0.0007;
+  prices["12"]["link"] = "https://app.proofy.io/bill/?code=u1000000";
+  prices["12"]["save"] = 86;
+  prices["13"] = new Object();
+  prices["13"]["cost"] = 1399;
+  prices["13"]["checks_count"] = 2500000;
+  prices["13"]["cost_per_check"] = 0.0006;
+  prices["13"]["link"] = "https://app.proofy.io/bill/?code=u2500000";
+  prices["13"]["save"] = 89;
+  $(function () {
+    $("#price-range").slider({
+      range: "min",
+      value: 7,
+      min: 1,
+      max: 13,
+      slide: function (event, ui) {
+        $(".js_slider_price_value").text(prices[ui.value]["cost"]);
+        $(".js_slider_checks_count").text(prices[ui.value]["checks_count"]);
+        $(".js_slider_cost_per_check").text(prices[ui.value]["cost_per_check"]);
+        $(".js_slider_pay_link").attr("href", prices[ui.value]["link"]);
+        $(".js_slider_price_save")
+          .toggleClass("hidden", !prices[ui.value]["save"])
+          .text("Save " + prices[ui.value]["save"] + "%!");
+        $(".price-range-bar .range-layout li")
+          .removeClass("active")
+          .slice(0, ui.value - 1)
+          .addClass("active");
+      },
+    });
+    $(".price-range-bar .range-layout").append("<li>");
+    $(".price-range-bar .range-layout li")
+      .slice(0, $("#price-range").slider("value") - 1)
+      .addClass("active");
+  });
+</script>
+
+<script>
+  $("#myTabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab("show");
+  });
+</script>
+{% endblock inline_javascript %}

@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block center %}
+<div class="container row">
+  <div class="col-lg-12">
+    <div id="alerts"></div>
+  </div>
+  <div class="page-snippet clearfix">
+    <section
+      class="p-window-container js-window js_help_file_list"
+      style="display: none"
+    >
+      <div class="p-window-background js-window-close"></div>
+      <div class="p-window p-window-sm">
+        <div class="p-window-title clearfix">
+          <img
+            class="js-window-close animate close f-right v-top"
+            width="12px"
+            height="12px"
+            src="{% static 'img/svg/close.svg' %}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Close"
+            alt="close"
+          />
+          <span class="f-left">Verification item statuses</span>
+        </div>
+        <div class="p-window-content">
+          <table>
+            <tr>
+              <td class="list-item">
+                <div class="item-status-cta processing-cta f-left transition">
+                  <span class="img-wrap v-middle">
+                    <div class="cssload-container">
+                      <div class="cssload-double-torus"></div>
+                    </div>
+                  </span>
+                  Proccessing
+                </div>
+              </td>
+              <td class="list-item-info v-middle">
+                &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;email list is still being
+                processed
+              </td>
+            </tr>
+            <tr>
+              <td class="list-item">
+                <div class="item-status-cta ready-cta f-left transition">
+                  <span class="img-wrap v-middle">
+                    <img
+                      class="v-middle"
+                      src="{% static 'img/svg/check_done.svg' %}"
+                    />
+                  </span>
+                  Report ready
+                </div>
+              </td>
+              <td class="list-item-info v-middle">
+                &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;full assurance email report is
+                ready
+              </td>
+            </tr>
+            <tr>
+              <td class="list-item">
+                <div class="item-status-cta already-cta f-left transition">
+                  <span class="img-wrap v-middle">
+                    <img
+                      class="v-middle"
+                      src="{% static 'img/svg/check_active.svg' %}"
+                    />
+                  </span>
+                  Completed
+                </div>
+              </td>
+              <td class="list-item-info v-middle">
+                &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;<a
+                  class="link"
+                  href="billing.html"
+                  >checks</a
+                >
+                has been already written off for this report
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="col-lg-12">
+      <h1 class="p-title f-left">Files</h1>
+    </div>
+    <div class="col-lg-12">
+      <div class="list-item list-item-header listing-head clearfix">
+        <div class="cl__2 f-left">
+          <div class="h-caption h-caption-date f-left">File Name</div>
+        </div>
+        <div class="cl__6 f-right">&nbsp;</div>
+        <div class="cl__5 f-right">
+          <div class="h-caption h-caption-date">Upload Date</div>
+        </div>
+        <div class="cl__4 f-right">
+          <div class="h-caption h-caption-status">
+            Item Status
+            <img
+              class="help-icon v-middle animate js_help_file_list_show"
+              height="16px"
+              width="16px"
+              src="{% static 'img/svg/info.svg' %}"
+            />
+          </div>
+        </div>
+        <div class="cl__3 f-right">
+          <div class="h-caption">Quantity</div>
+        </div>
+      </div>
+      <section
+        class="basic-section basic-section-separate list-group b-radius-tl b-radius-tr b-radius-bl b-radius-br"
+      >
+        <div class="list-item clearfix" data-file-check-id="37043960">
+          <div class="cl__2 f-left">
+            <div class="item-name f-left d-title digit">
+              <a href="">
+                <img
+                  class="doc-icon transition"
+                  src="{% static 'img/svg/doc.svg' %}"
+                />
+                email
+              </a>
+            </div>
+          </div>
+          <!-- <div class="cl__6 f-right">
+            <div
+              class="item-delete f-right"
+              data-toggle="tooltip"
+              data-placement="top"
+              title=""
+              data-original-title="Delete"
+            >
+              <img
+                width="10px"
+                height="10px"
+                src="{% static 'img/svg/close.svg' %}"
+                onclick="delete_file_check(37043960)"
+                class="animate delete"
+                alt="close"
+                title="Delete"
+              />
+            </div>
+          </div> -->
+          <div class="cl__5 f-right">
+            <div class="item-date f-right color-light digit">
+              2024-11-05 09:04
+            </div>
+          </div>
+          <div class="cl__4 f-right">
+            <a href="">
+              <!--COMPLETED-->
+              <div class="item-status-cta ready-cta f-left transition">
+                <span class="img-wrap v-middle">
+                  <img
+                    class="v-middle"
+                    src="{% static 'img/svg/check_active_light.svg' %}"
+                  />
+                </span>
+                Completed
+              </div>
+            </a>
+          </div>
+          <div class="cl__3 f-right digit">3 items</div>
+        </div>
+
+        <div class="list-item clearfix" data-file-check-id="36988351">
+          <div class="cl__2 f-left">
+            <div class="item-name f-left d-title digit">
+              <a href="">
+                <img
+                  class="doc-icon transition"
+                  src="{% static 'img/svg/doc.svg' %}"
+                />
+                filename.docx
+              </a>
+            </div>
+          </div>
+          <div class="cl__6 f-right">&nbsp;</div>
+          <div class="cl__5 f-right">
+            <div class="item-date f-right color-light digit">
+              2024-11-05 05:16
+            </div>
+          </div>
+          <div class="cl__4 f-right">
+            <a href="">
+              <!--ERROR-->
+              <div class="item-status-cta error-cta f-left transition">
+                <span class="img-wrap v-middle">
+                  <font color="#ffffff">❗</font>
+                </span>
+                Error
+              </div>
+            </a>
+          </div>
+          <div class="cl__3 f-right digit">0 items</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock center %}
+<!--  -->
+{% block inline_javascript %}
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".js_help_file_list_show").click(function () {
+      $(".js_help_file_list").show();
+    });
+  });
+</script>
+
+{% endblock inline_javascript %}

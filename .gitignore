@@ -1,0 +1,7 @@
+zerobounce/.gitignore
+auth/.gitignore
+mailvie/.gitignore
+mailvie_dashboard/.gitignore
+webhook/.gitignore
+zerobouceendpoint/.gitignore
+init/

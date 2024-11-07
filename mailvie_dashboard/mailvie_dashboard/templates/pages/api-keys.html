@@ -1,0 +1,309 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block center %}
+
+<div class="container row">
+  <div class="col-lg-12">
+    <div id="alerts"></div>
+  </div>
+  <div class="page-snippet clearfix">
+    <div class="col-lg-12">
+      <h1 class="p-title">Verify API</h1>
+    </div>
+    <div class="col-lg-12">
+      <section
+        class="basic-section basic-section-spaced b-radius-tl b-radius-tr b-radius-bl b-radius-br"
+      >
+        <table class="fields-layout">
+          <tr>
+            <td>API key</td>
+            <td>
+              <input
+                class="js_key js_copy digit"
+                value="mZekCrbYdFtb2cULuZT0bwP"
+                type="text"
+                title="copy"
+                readonly
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>User ID</td>
+            <td>
+              <input
+                class="m-bottom js_copy"
+                value="68696"
+                type="text"
+                title="copy"
+                readonly
+              />
+            </td>
+          </tr>
+        </table>
+        <br />
+        <p>
+          API key can be changed via
+          <a class="link" href="/settings#api">Settings page</a>
+        </p>
+      </section>
+      <br />
+      <div class="tip f-small-13">
+        <b>Single e-mail check request:</b><br />
+        https://api.proofy.io/verifyaddr?aid=<strong>{User ID}</strong
+        >&key=<strong>{API key}</strong>&email=<strong>{EMAIL}</strong><br />
+        <br />
+        Example:<br />
+        https://api.proofy.io/verifyaddr?aid=<strong>68696</strong>&key=<strong>mZekCrbYdFtb2cULuZT0bwP</strong>&email=<strong
+          >support@proofy.io</strong
+        ><br />
+        <br />
+        Result on success:<br />
+        {"cid":123}<br />
+        <table>
+          <tbody>
+            <tr class="tb-header">
+              <td><strong class="dark-text">Field</strong></td>
+              <td><strong class="dark-text">Description</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>cid</strong>
+              </td>
+              <td>Check id (you'll need it to get check result)</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        Result on error:<br />
+        {"error":true,"message":"System error. Please try again later."}<br />
+        <hr />
+        <b>Receive single e-mail check result:</b><br />
+        https://api.proofy.io/getresult?aid=<strong>{User ID}</strong
+        >&key=<strong>{API key}</strong>&cid=<strong
+          >{Check id from previous request}</strong
+        ><br />
+        <br />
+        Example:<br />
+        https://api.proofy.io/getresult?aid=<strong>68696</strong>&key=<strong>mZekCrbYdFtb2cULuZT0bwP</strong>&cid=<strong
+          >123</strong
+        ><br />
+        <br />
+        Result if check complete:<br />
+        {"cid":"123","checked":true,"result":[{"email":"support@proofy.io","status":1,"statusName":"deliverable","syntax":"1","mx":"1","role":"1","free":"0","disposable":"0"}]}<br />
+        <table>
+          <tbody>
+            <tr class="tb-header">
+              <td><strong class="dark-text">Field</strong></td>
+              <td><strong class="dark-text">Description</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>email</strong>
+              </td>
+              <td>E-mail address</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>status</strong>
+              </td>
+              <td>
+                E-mail status id: 1 - deliverable, 2 - risky, 3 - undeliverable,
+                4 - unknown
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>statusName</strong>
+              </td>
+              <td>
+                Name for status id: deliverable, risky, undeliverable, unknown
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>syntax</strong>
+              </td>
+              <td>E-mail address syntax: 1 - correct, 0 - incorrect</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>mx</strong>
+              </td>
+              <td>E-mail domain has MX records: 1 - yes, 0 - no</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>role</strong>
+              </td>
+              <td>
+                E-mail has a role (support, info, noreply, etc): 1 - yes, 0 - no
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>free</strong>
+              </td>
+              <td>
+                E-mail is on a free hosting (gmail.com, yahoo.com, etc): 1 -
+                yes, 0 - no
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>disposable</strong>
+              </td>
+              <td>E-mail is disposable: 1 - yes, 0 - no</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        Result if check not yet complete:<br />
+        {"cid":"123","checked":false,"result":[]}<br />
+        <br />
+        Result on error:<br />
+        {"error":true,"message":"System error. Please try again later."}<br />
+        <hr />
+        <b>Get balance:</b><br />
+        https://api.proofy.io/getbalance?aid=<strong>{User ID}</strong
+        >&key=<strong>{API key}</strong><br />
+        <br />
+        Example:<br />
+        https://api.proofy.io/getbalance?aid=<strong>68696</strong>&key=<strong
+          >mZekCrbYdFtb2cULuZT0bwP</strong
+        ><br />
+        <br />
+        Result on success:<br />
+        {"balance":98,"checks":0,"bonus_checks":98,"reserved_checks":0,"reserved_bonus_checks":0}<br />
+        <table>
+          <tbody>
+            <tr class="tb-header">
+              <td><strong class="dark-text">Field</strong></td>
+              <td><strong class="dark-text">Description</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>balance</strong>
+              </td>
+              <td>Your available checks (usual + bonus)</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>checks</strong>
+              </td>
+              <td>Your available checks</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>bonus_checks</strong>
+              </td>
+              <td>Your available bonus checks</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>reserved_checks</strong>
+              </td>
+              <td>
+                Checks currently reserved for files/api requests in progress
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>reserved_bonus_checks</strong>
+              </td>
+              <td>
+                Bonus checks currently reserved for files/api requests in
+                progress
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        Result on error:<br />
+        {"error":true,"message":"System error. Please try again later."}<br />
+        <hr />
+        <b>Check multiple emails:</b><br />
+        Encode e-mail list as JSON array and send it as raw POST data to
+        https://api.proofy.io/verifylist?aid=<strong>{User ID}</strong
+        >&key=<strong>{API key}</strong><br />
+        <br />
+        Example (uses cURL for sending POST request):<br />
+        curl -d '["support@proofy.io","someuser@proofy.io"]' -X POST
+        https://api.proofy.io/verifylist?aid=<strong>68696</strong>&key=<strong
+          >mZekCrbYdFtb2cULuZT0bwP</strong
+        ><br />
+        <br />
+        Result on success:<br />
+        {"cid":123}<br />
+        <table>
+          <tbody>
+            <tr class="tb-header">
+              <td><strong class="dark-text">Field</strong></td>
+              <td><strong class="dark-text">Description</strong></td>
+            </tr>
+            <tr>
+              <td>
+                <strong>cid</strong>
+              </td>
+              <td>Check id (you'll need it to get check result)</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        Result on error:<br />
+        {"error":true,"message":"System error. Please try again later."}<br />
+        <hr />
+        <b>Receive list check result:</b><br />
+        https://api.proofy.io/getlistresult?aid=<strong>{User ID}</strong
+        >&key=<strong>{API key}</strong>&cid=<strong
+          >{Check id from previous request}</strong
+        ><br />
+        <br />
+        Example:<br />
+        https://api.proofy.io/getlistresult?aid=<strong>68696</strong>&key=<strong>mZekCrbYdFtb2cULuZT0bwP</strong>&cid=<strong
+          >123</strong
+        ><br />
+        <br />
+        Result if check complete:<br />
+        {"cid":"123","checked":true,"result":[{"email":"support@proofy.io","status":1,"statusName":"deliverable","syntax":"1","mx":"1","role":"1","free":"0","disposable":"0"},{"email":"someuser@proofy.io","status":3,"statusName":"undeliverable","syntax":"1","mx":"1","role":"0","free":"0","disposable":"0"}]}<br />
+        <br />
+        Result if check not yet complete:<br />
+        {"cid":"123","checked":false,"result":[]}<br />
+        <br />
+        Result if check will not be completed because of some permanent
+        error:<br />
+        {"cid":"123","checked":false,"result":[],"status":{"error":true,"message":"You
+        don't have checks. Check your balance."}}
+        <br />
+        Result on temporary error:<br />
+        {"error":true,"message":"System error. Please try again later."}<br />
+        <hr />
+        <p>
+          For details read
+          <a target="_blank" class="link" href="https://proofy.io/using-api/"
+            >API Documentation</a
+          >
+          or view PHP code example for
+          <a target="_blank" class="link" href="admin/apiexample"
+            >single e-mail</a
+          >
+          or
+          <a target="_blank" class="link" href="admin/apilistexample"
+            >e-mail list</a
+          >
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock center %} {% block inline_javascript %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".js_copy").on("click", function () {
+      $(this).select();
+    });
+  });
+</script>
+{% endblock inline_javascript %}

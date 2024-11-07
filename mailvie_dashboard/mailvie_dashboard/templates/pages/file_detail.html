@@ -1,0 +1,1170 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block center %}
+<div class="container row">
+  <div class="col-lg-12">
+    <div id="alerts"></div>
+  </div>
+  <div class="page-snippet clearfix">
+    <section
+      class="p-window-container js-window js_dl_main_window"
+      style="display: none"
+    >
+      <div class="p-window-background js-window-close"></div>
+      <div class="p-window p-window-md js_dl_wraper" style="margin-top: 8%">
+        <div
+          class="progress-indicator js_progress_indicator_dl"
+          style="display: none"
+        >
+          <div class="load-content align-center">
+            <div class="load-container load8">
+              <div class="loader"></div>
+              Processing
+            </div>
+          </div>
+        </div>
+        <div class="p-window-title clearfix">
+          <img
+            class="js-window-close animate close f-right v-top"
+            width="12px"
+            height="12px"
+            src="{% static 'img/svg/close.svg' %}"
+            data-toggle="tooltip"
+            data-placement="top"
+            title=""
+            alt="close"
+            data-original-title="Close"
+          />
+          <span class="f-left">filename</span>
+        </div>
+        <div class="p-window-content">
+          <div class="btn-group clearfix btn-group-type" data-toggle="buttons">
+            <label class="btn active js_dl_btn js_dl_btn_del">
+              <input
+                type="checkbox"
+                checked=""
+                autocomplete="off"
+                name="main_del"
+              />
+              <img
+                class="v-middle"
+                src="{% static 'img/svg/doc_type1.svg' %}"
+              />
+              <span class="">Deliverable</span>
+            </label>
+            <label class="btn js_dl_btn js_dl_btn_risky">
+              <input type="checkbox" autocomplete="off" name="main_risky" />
+              <img
+                class="v-middle"
+                src="{% static 'img/svg/doc_type3.svg' %}"
+              />
+              <span class="">Risky</span>
+            </label>
+            <label class="btn js_dl_btn js_dl_btn_undel">
+              <input type="checkbox" autocomplete="off" name="main_undel" />
+              <img
+                class="v-middle"
+                src="{% static 'img/svg/doc_type2.svg' %}"
+              />
+              <span class="">Undeliverable</span>
+            </label>
+            <label class="btn js_dl_btn js_dl_btn_unknown">
+              <input type="checkbox" autocomplete="off" name="main_unknown" />
+              <img class="v-middle" src="{% static 'img/svg/doc_type.svg' %}" />
+              <span class="">Unknown</span>
+            </label>
+          </div>
+          <fieldset class="radio-group">
+            <div class="radio-row">
+              <input
+                id="main_all_results"
+                class="js_all_results_toggle"
+                type="checkbox"
+                name="main_all_results"
+              />
+              <label for="main_all_results"><span></span>All results</label>
+            </div>
+            <div class="radio-row">
+              <input
+                id="custome_toggle"
+                class="js_custome_toggle"
+                type="checkbox"
+                name="custome_toggle"
+              />
+              <label for="custome_toggle"
+                ><span></span>Customize download results</label
+              >
+            </div>
+          </fieldset>
+          <!--CUSTOM FIELDS-->
+          <section class="custom-group" style="display: none">
+            <h3 class="group-title dark-text">
+              <span class="digit">1.</span> Where to search results
+            </h3>
+            <fieldset class="radio-group">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input id="where0" type="checkbox" name="where_copy" />
+                        <label for="where0"><span></span>Add "Copy"</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where0_not"
+                          type="checkbox"
+                          name="where_copy_not"
+                        />
+                        <label for="where0_not"
+                          ><span></span>Add "not Copy"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where1"
+                          type="checkbox"
+                          name="where_syntax"
+                        />
+                        <label for="where1"
+                          ><span></span>Add "Valid syntax"</label
+                        >
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where1_not"
+                          type="checkbox"
+                          name="where_syntax_not"
+                        />
+                        <label for="where1_not"
+                          ><span></span>Add "not Valid syntax"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input id="where2" type="checkbox" name="where_mx" />
+                        <label for="where2"><span></span>Add "MX exist"</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where2_not"
+                          type="checkbox"
+                          name="where_mx_not"
+                        />
+                        <label for="where2_not"
+                          ><span></span>Add "not MX exist"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input id="where3" type="checkbox" name="where_role" />
+                        <label for="where3"><span></span>Add "Role"</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where3_not"
+                          type="checkbox"
+                          name="where_role_not"
+                        />
+                        <label for="where3_not"
+                          ><span></span>Add "not Role"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input id="where4" type="checkbox" name="where_free" />
+                        <label for="where4"><span></span>Add "Free"</label>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where4_not"
+                          type="checkbox"
+                          name="where_free_not"
+                        />
+                        <label for="where4_not"
+                          ><span></span>Add "not Free"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where5"
+                          type="checkbox"
+                          name="where_disposable"
+                        />
+                        <label for="where5"
+                          ><span></span>Add "Disposable"</label
+                        >
+                      </div>
+                    </td>
+                    <td>
+                      <div class="radio-row js_dl_where_ch">
+                        <input
+                          id="where5_not"
+                          type="checkbox"
+                          name="where_disposable_not"
+                        />
+                        <label for="where5_not"
+                          ><span></span>Add "not Disposable"</label
+                        >
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </fieldset>
+            <br />
+            <h3 class="group-title dark-text">
+              <span class="digit">2.</span> What to show in results
+            </h3>
+            <fieldset class="radio-group">
+              <div class="radio-row js_dl_what_ch">
+                <input id="what0" type="checkbox" name="status" />
+                <label for="what0"><span></span>Add row "Status id"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input
+                  id="what1"
+                  type="checkbox"
+                  name="status_name"
+                  checked="checked"
+                />
+                <label for="what1"><span></span>Add row "Status name"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what2" type="checkbox" name="email" />
+                <label for="what2"><span></span>Add row "Email address"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what3" type="checkbox" name="is_syntax" />
+                <label for="what3"><span></span>Add row "Email syntax"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what4" type="checkbox" name="is_mx" />
+                <label for="what4"><span></span>Add row "MX exist"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what5" type="checkbox" name="is_role" />
+                <label for="what5"><span></span>Add row "Role"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what6" type="checkbox" name="is_free" />
+                <label for="what6"><span></span>Add row "Free"</label>
+              </div>
+              <div class="radio-row js_dl_what_ch">
+                <input id="what7" type="checkbox" name="is_disposable" />
+                <label for="what7"><span></span>Add row "Disposable"</label>
+              </div>
+            </fieldset>
+            <br />
+            <!--
+            <h3 class="group-title dark-text"><span class="digit">3.</span> Sorting the results</h3>
+            <fieldset class="radio-group">
+                <div class="radio-row">
+                    <input id="radio1" type="radio" name="order" value="origin" checked="checked"/>
+                    <label for="radio1"><span><span></span></span>Original</label>
+                </div>
+                <div class="radio-row">
+                    <input id="radio2" type="radio" name="order" value="mail_asc"/>
+                    <label for="radio2"><span><span></span></span>Ascending mail</label>
+                </div>
+                <div class="radio-row">
+                    <input id="radio3" type="radio" name="order" value="mail_desc"/>
+                    <label for="radio3"><span><span></span></span>Descending mail</label>
+                </div>
+            </fieldset>
+            <br />
+-->
+            <!--
+            <h3 class="group-title dark-text"><span class="digit">5.</span> Include cells values from the source file</h3>
+            <fieldset class="radio-group">
+                <div class="radio-row js_dl_what_ch">
+                    <input id="include_src_data" type="checkbox" name="include_src_data" checked="checked"/>
+                    <label for="include_src_data"><span></span>Include cells</label>
+                </div>
+            </fieldset>
+-->
+          </section>
+        </div>
+        <div class="btn-section b-top clearfix">
+          <button class="btn btn-ghost-primary js-window-close">Cancel</button>
+          <button class="btn btn-primary js_download_btn_csv">
+            <img class="v-middle" src="{% static 'img/svg/download.svg' %}" />
+            Download CSV
+          </button>
+        </div>
+      </div>
+    </section>
+    <div class="col-lg-12">
+      <h1 class="p-title">
+        <a class="bc-first" href="{% url 'email_list_verify_view' %}"
+          >All Files</a
+        >
+        <span class="bc-divider">/</span>
+        <span class="digit js_file_name">filename</span>
+      </h1>
+    </div>
+    <div class="col-lg-6">
+      <section
+        class="basic-section item-section list-group b-radius-tl list-spacing b-radius-tr b-radius-bl b-radius-br"
+        style="position: relative"
+      >
+        <!--PRELOADER-->
+        <div
+          class="progress-indicator js_progress_indicator"
+          style="display: none"
+        >
+          <div class="load-content align-center">
+            <div class="load-container load8">
+              <div class="loader"></div>
+              Processing (<strong class="digit dark-text js_checked_percentage"
+                >0%</strong
+              >
+              completed)
+            </div>
+          </div>
+        </div>
+        <div class="list-item list-item-header list-item-header-nt clearfix">
+          <div class="item-name-t f-left">Assurance report</div>
+          <div class="item-name-t f-right">
+            Total emails in file:
+            <strong class="digit dark-text js_total_count">3</strong>
+            <span class="js_unique_block" style=""
+              >(unique:
+              <strong class="digit dark-text js_unique_count">3</strong>)</span
+            >
+          </div>
+        </div>
+        <div class="list-item clearfix b-bottom b-default-light">
+          <div class="f-left left-bar">
+            <span class="item-name d-title">Deliverable</span>
+            <a
+              data-toggle="tooltip"
+              data-placement="top"
+              title=""
+              data-original-title="More info"
+              target="_blank"
+              href=""
+            >
+              <img
+                class="animate more-info"
+                src="{% static 'img/svg/info.svg' %}"
+              />
+            </a>
+          </div>
+          <div class="percentage f-right js_ok_count_p">(33%)</div>
+          <div
+            class="counter-type counter-type-deliver f-right js_ok_count digit dark-text"
+          >
+            1
+          </div>
+        </div>
+        <div class="list-item clearfix b-bottom b-default-light">
+          <div class="f-left left-bar">
+            <span class="item-name d-title"> Unknown </span>
+            <a
+              data-toggle="tooltip"
+              data-placement="top"
+              title=""
+              data-original-title="More info"
+              target="_blank"
+              href=""
+            >
+              <img
+                class="animate more-info"
+                src="{% static 'img/svg/info.svg' %}"
+              />
+            </a>
+          </div>
+          <div class="percentage f-right js_unknown_count_p">(0%)</div>
+          <div
+            class="counter-type counter-type-risky1 f-right js_unknown_count digit dark-text"
+          >
+            0
+          </div>
+        </div>
+        <div class="list-item clearfix b-bottom b-default-light">
+          <div class="f-left left-bar">
+            <span class="item-name d-title">Risky</span>
+            <a
+              data-toggle="tooltip"
+              data-placement="top"
+              title=""
+              data-original-title="More info"
+              target="_blank"
+              href=""
+            >
+              <img
+                class="animate more-info"
+                src="{% static 'img/svg/info.svg' %}"
+              />
+            </a>
+          </div>
+          <div class="percentage f-right js_risky_count_p">(0%)</div>
+          <div
+            class="counter-type counter-type-risky f-right js_risky_count digit dark-text"
+          >
+            0
+          </div>
+        </div>
+        <div class="list-item clearfix">
+          <div class="f-left left-bar">
+            <span class="item-name d-title">Undeliverable</span>
+            <a
+              data-toggle="tooltip"
+              data-placement="top"
+              data-original-title="More info"
+              target="_blank"
+              href=""
+            >
+              <img
+                class="animate more-info"
+                src="{% static 'img/svg/info.svg' %}"
+              />
+            </a>
+          </div>
+          <div class="percentage f-right js_wrong_count_p">(67%)</div>
+          <div
+            class="counter-type counter-type-undeliver f-right js_wrong_count digit dark-text"
+          >
+            2
+          </div>
+        </div>
+      </section>
+      <div
+        class="tip f-small-13 m-bottom js_tip_no_emails"
+        style="display: none"
+      >
+        <p>
+          It seems that there are no email addresses in this file. If you're
+          sure that the file format is correct - please contact our support
+        </p>
+      </div>
+      <div class="tip f-small-13 m-bottom js_tip_error" style="display: none">
+        <p>
+          Sorry, but there was an error while processing your file. Please
+          contact our support
+        </p>
+        <div class="js_error_details">ERROR: Unknown error</div>
+      </div>
+      <div class="js_buttons_download" style="">
+        <a
+          href="https://app.proofy.io/billing"
+          class="js_button_billing"
+          style="display: none"
+        >
+          <button
+            class="btn btn-primary btn-marked btn-lg"
+            data-toggle="tooltip"
+            data-placement="right"
+            data-original-title="You have to buy in order to start checking file"
+          >
+            <span class="caption">
+              <img
+                class="v-middle"
+                src="{% static 'img/svg/m_upload_ic.svg' %}"
+              />
+              Purchase and start checking
+            </span>
+            <span class="mark">
+              <img
+                height="16px"
+                class="v-middle"
+                src="{% static 'img/svg/check_active_light.svg' %}"
+              />
+              <span class="js_file_checks_need digit">3</span> checks
+            </span>
+          </button>
+        </a>
+        <button
+          data-toggle="tooltip"
+          data-placement="right"
+          data-original-title="Will be withdrawn from your account"
+          class="btn btn-primary btn-marked js_button_write_off"
+          style="display: none"
+        >
+          <span class="caption">
+            <img
+              class="v-middle"
+              src="{% static 'img/svg/m_upload_ic.svg' %}"
+            />
+            Start checking file
+          </span>
+          <span class="mark">
+            <img
+              height="16px"
+              class="v-middle"
+              src="{% static 'img/svg/check_active_light.svg' %}"
+            />
+            <span class="js_file_checks_need digit">3</span> checks
+          </span>
+        </button>
+        <button
+          class="btn btn-primary btn-lg js-popup-init js_button_download"
+          onclick="$('.js_dl_main_window').show();"
+        >
+          <img class="v-middle" src="{% static 'img/svg/download.svg' %}" />
+          <strong>Download</strong>
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div
+        id="chart-container"
+        class="chart-container"
+        data-highcharts-chart="0"
+      >
+        <div
+          class="highcharts-container"
+          id="highcharts-0"
+          style="
+            position: relative;
+            overflow: hidden;
+            width: 607px;
+            height: 340px;
+            text-align: left;
+            line-height: normal;
+            z-index: 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            font-family: Lato, sans-serif;
+            font-size: 14px;
+          "
+        >
+          <svg
+            version="1.1"
+            style="font-family: &quot;Lato&quot;, sans-serif; font-size: 14px"
+            xmlns="http://www.w3.org/2000/svg"
+            width="607"
+            height="340"
+          >
+            <desc>Created with Highcharts 4.0.4</desc>
+            <defs>
+              <clipPath id="highcharts-1">
+                <rect x="0" y="0" width="587" height="315"></rect>
+              </clipPath>
+            </defs>
+            <path fill="rgba(254,101,71,0.25)" d="M 0 0"></path>
+            <g class="highcharts-series-group" zIndex="3">
+              <g
+                class="highcharts-series highcharts-tracker"
+                visibility="visible"
+                zIndex="0.1"
+                transform="translate(10,10) scale(1 1)"
+                style="cursor: pointer"
+              >
+                <path
+                  fill="#13cb6e"
+                  d="M 293.46995820245496 10.000003059354611 A 147.5 147.5 0 0 1 421.28288385671306 231.17349993899967 L 293.5 157.5 A 0 0 0 0 0 293.5 157.5 Z"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linejoin="round"
+                  transform="translate(0,0)"
+                ></path>
+                <path
+                  fill="#fdd42c"
+                  d="M 421.20914647761634 231.30124596481232 A 147.5 147.5 0 0 1 421.28288385671306 231.17349993899967 L 293.5 157.5 A 0 0 0 0 0 293.5 157.5 Z"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linejoin="round"
+                  transform="translate(0,0)"
+                ></path>
+                <path
+                  fill="#eaa449"
+                  d="M 421.20914647761634 231.30124596481232 A 147.5 147.5 0 0 1 421.28288385671306 231.17349993899967 L 293.5 157.5 A 0 0 0 0 0 293.5 157.5 Z"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linejoin="round"
+                  transform="translate(0,0)"
+                ></path>
+                <path
+                  fill="#fe6547"
+                  d="M 421.20914647761634 231.30124596481232 A 147.5 147.5 0 1 1 293.29512545913445 10.00014228338216 L 293.5 157.5 A 0 0 0 1 0 293.5 157.5 Z"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-linejoin="round"
+                  transform="translate(0,0)"
+                ></path>
+              </g>
+              <g
+                class="highcharts-markers"
+                visibility="visible"
+                zIndex="0.1"
+                transform="translate(10,10) scale(1 1)"
+              ></g>
+            </g>
+            <g
+              class="highcharts-data-labels highcharts-tracker"
+              visibility="visible"
+              zIndex="6"
+              transform="translate(10,10) scale(1 1)"
+              opacity="1"
+              style="cursor: pointer"
+            >
+              <path
+                fill="none"
+                d="M 452.21950917173785 68.74999999999997 C 447.21950917173785 68.74999999999997 440.2913059414624 72.74999999999997 430.76502649983354 78.24999999999997 L 421.2387470582047 83.74999999999997"
+                stroke="#13cb6e"
+                stroke-width="1"
+              ></path>
+              <path
+                fill="none"
+                d="M 458.6686611044745 234 C 453.6686611044745 234 440.29130594146244 242.24999999999991 430.7650264998336 236.74999999999991 L 421.23874705820475 231.24999999999991"
+                stroke="#fdd42c"
+                stroke-width="1"
+              ></path>
+              <path
+                fill="none"
+                d="M 448.7531197679436 252 C 443.7531197679436 252 440.29130594146244 242.24999999999991 430.7650264998336 236.74999999999991 L 421.23874705820475 231.24999999999991"
+                stroke="#eaa449"
+                stroke-width="1"
+              ></path>
+              <path
+                fill="none"
+                d="M 134.78049082826226 246.2500000000002 C 139.78049082826226 246.2500000000002 146.70869405853776 242.25000000000017 156.23497350016657 236.75000000000017 L 165.7612529417954 231.25000000000017"
+                stroke="#fe6547"
+                stroke-width="1"
+              ></path>
+              <g
+                zIndex="1"
+                style="cursor: pointer"
+                transform="translate(457,59)"
+              >
+                <text
+                  x="3"
+                  zIndex="1"
+                  style="font-size: 11px; color: black; fill: black"
+                  y="15"
+                >
+                  <tspan style="font-weight: bold">Deliverable</tspan>
+                  <tspan dx="0">: 33.3 %</tspan>
+                </text>
+              </g>
+              <g
+                zIndex="1"
+                style="cursor: pointer"
+                transform="translate(464,224)"
+              >
+                <text
+                  x="3"
+                  zIndex="1"
+                  style="font-size: 11px; color: black; fill: black"
+                  y="15"
+                >
+                  <tspan style="font-weight: bold">Unknown</tspan>
+                  <tspan dx="0">: 0.0 %</tspan>
+                </text>
+              </g>
+              <g
+                zIndex="1"
+                style="cursor: pointer"
+                transform="translate(454,242)"
+              >
+                <text
+                  x="3"
+                  zIndex="1"
+                  style="font-size: 11px; color: black; fill: black"
+                  y="15"
+                >
+                  <tspan style="font-weight: bold">Risky</tspan>
+                  <tspan dx="0">: 0.0 %</tspan>
+                </text>
+              </g>
+              <g
+                zIndex="1"
+                style="cursor: pointer"
+                transform="translate(14,236)"
+              >
+                <text
+                  x="0"
+                  zIndex="1"
+                  style="font-size: 11px; color: black; fill: black"
+                  y="15"
+                >
+                  <tspan style="font-weight: bold">Undeliverable</tspan>
+                  <tspan dx="0">: 66.7 %</tspan>
+                </text>
+              </g>
+            </g>
+            <g class="highcharts-legend" zIndex="7">
+              <g zIndex="1"><g></g></g>
+            </g>
+            <g
+              class="highcharts-tooltip"
+              zIndex="8"
+              style="cursor: default; padding: 0; white-space: nowrap"
+              transform="translate(192,-9999)"
+              opacity="0"
+              visibility="visible"
+            >
+              <path
+                fill="none"
+                d="M 3.5 0.5 L 98.5 0.5 C 101.5 0.5 101.5 0.5 101.5 3.5 L 101.5 40.5 C 101.5 43.5 101.5 43.5 98.5 43.5 L 3.5 43.5 C 0.5 43.5 0.5 43.5 0.5 40.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"
+                isShadow="true"
+                stroke="black"
+                stroke-opacity="0.049999999999999996"
+                stroke-width="5"
+                transform="translate(1, 1)"
+                width="101"
+                height="43"
+              ></path>
+              <path
+                fill="none"
+                d="M 3.5 0.5 L 98.5 0.5 C 101.5 0.5 101.5 0.5 101.5 3.5 L 101.5 40.5 C 101.5 43.5 101.5 43.5 98.5 43.5 L 3.5 43.5 C 0.5 43.5 0.5 43.5 0.5 40.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"
+                isShadow="true"
+                stroke="black"
+                stroke-opacity="0.09999999999999999"
+                stroke-width="3"
+                transform="translate(1, 1)"
+                width="101"
+                height="43"
+              ></path>
+              <path
+                fill="none"
+                d="M 3.5 0.5 L 98.5 0.5 C 101.5 0.5 101.5 0.5 101.5 3.5 L 101.5 40.5 C 101.5 43.5 101.5 43.5 98.5 43.5 L 3.5 43.5 C 0.5 43.5 0.5 43.5 0.5 40.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"
+                isShadow="true"
+                stroke="black"
+                stroke-opacity="0.15"
+                stroke-width="1"
+                transform="translate(1, 1)"
+                width="101"
+                height="43"
+              ></path>
+              <path
+                fill="rgba(249, 249, 249, .85)"
+                d="M 3.5 0.5 L 98.5 0.5 C 101.5 0.5 101.5 0.5 101.5 3.5 L 101.5 40.5 C 101.5 43.5 101.5 43.5 98.5 43.5 L 3.5 43.5 C 0.5 43.5 0.5 43.5 0.5 40.5 L 0.5 3.5 C 0.5 0.5 0.5 0.5 3.5 0.5"
+                stroke="#fe6547"
+                stroke-width="1"
+              ></path>
+              <text
+                x="8"
+                zIndex="1"
+                style="font-size: 12px; color: #333333; fill: #333333"
+                y="21"
+              >
+                <tspan style="font-size: 10px">Undeliverable</tspan>
+                <tspan x="8" dy="16">Quantity:</tspan>
+                <tspan style="font-weight: bold" dx="0">66.7%</tspan>
+              </text>
+            </g>
+            <text
+              x="597"
+              text-anchor="end"
+              zIndex="8"
+              style="
+                cursor: pointer;
+                color: #909090;
+                font-size: 9px;
+                fill: #909090;
+              "
+              y="335"
+            >
+              Highcharts.com
+            </text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock center %}
+<!--  -->
+{% block inline_javascript %}
+
+<script>
+  $(document).ready(function () {
+    if ($(".js_custome_toggle").prop("checked")) {
+      $(".custom-group").slideDown(0);
+    } else {
+      $(".custom-group").slideUp(0);
+    }
+    $(".js_custome_toggle").change(function () {
+      if ($(".js_custome_toggle").prop("checked")) {
+        $(".custom-group").slideDown(0);
+      } else {
+        $(".custom-group").slideUp(0);
+      }
+    });
+    $(".js_all_results_toggle").change(function () {
+      if ($(".js_all_results_toggle").prop("checked")) {
+        $(".js_dl_btn_del").addClass("active");
+        $(".js_dl_btn_risky").addClass("active");
+        $(".js_dl_btn_undel").addClass("active");
+        $(".js_dl_btn_unknown").addClass("active");
+        $(".js_dl_btn input").prop("checked", true);
+        $(".js_dl_where_ch input").prop("checked", false);
+      }
+    });
+    $(".js_dl_btn").click(function () {
+      $(".js_dl_where_ch input").prop("checked", false);
+      $(".js_all_results_toggle").prop("checked", false);
+    });
+    $(".js_dl_where_ch").click(function () {
+      $(".js_dl_btn").removeClass("active");
+      $(".js_dl_btn input").prop("checked", false);
+      $(".js_all_results_toggle").prop("checked", false);
+    });
+    $(".js_download_btn_csv").click(function () {
+      download_file();
+    });
+  });
+  function is_file_ready(file_id, file_suffix) {
+    var post_data = new Object();
+    post_data["suffix"] = file_suffix;
+    $.ajax({
+      method: "POST",
+      url: "/admin/is_file_ready_ajax/" + file_id,
+      cache: false,
+      data: post_data,
+    }).done(function (result_data) {
+      data = JSON.parse(result_data);
+      if (data["file_ready"]) {
+        $(".js_progress_indicator_dl").hide();
+        window.location.href =
+          "/download/get_file_check_result/" + file_id + file_suffix;
+      } else {
+        setTimeout(function () {
+          is_file_ready(file_id, file_suffix);
+        }, 5000);
+      }
+    });
+  }
+  function download_file() {
+    var file_id = $("prop[data-type=file_check_item]").attr("data-id");
+    var post_data = new Object();
+    $(".js_dl_wraper input").each(function (index, obj) {
+      if (
+        $(obj).attr("name") != "order" &&
+        $(obj).attr("name") != "delimiter"
+      ) {
+        post_data[$(obj).attr("name")] = $(obj).prop("checked");
+      } else {
+        if ($(obj).prop("checked") == true) {
+          post_data[$(obj).attr("name")] = $(obj).val();
+        }
+      }
+    });
+    $.ajax({
+      method: "POST",
+      url: "/admin/create_file_report_ajax/" + file_id,
+      cache: false,
+      data: post_data,
+    }).done(function (result_data) {
+      data = JSON.parse(result_data);
+      if (data["suffix"]) {
+        $(".js_progress_indicator_dl").show();
+        is_file_ready(file_id, data["suffix"]);
+      }
+    });
+  }
+</script>
+<script>
+  var chart_main;
+  $(document).ready(function () {
+    var file_id = $("prop[data-type=file_check_item]").attr("data-id");
+    if (file_id > 0) {
+      $("#chart-container").highcharts({
+        chart: {
+          plotBackgroundColor: null,
+          plotBorderWidth: 0,
+          plotShadow: false,
+          backgroundColor: null,
+          borderColor: null,
+          style: {
+            fontFamily: '"Lato", sans-serif',
+            fontSize: "14px",
+          },
+          events: {
+            load: function () {
+              var refresh_time = 4 * 1000;
+              var series = this.series[0];
+              function checkNextDatapart(_series) {
+                var requests_total;
+                var file_id = $("prop[data-type=file_check_item]").attr(
+                  "data-id",
+                );
+                $.ajax({
+                  method: "POST",
+                  url: "/admin/get_stat_file_ajax/" + file_id,
+                  cache: false,
+                }).done(function (result_data) {
+                  result_data = JSON.parse(result_data);
+                  data = result_data;
+                  total_checks = parseInt(
+                    $(".js_global_property").attr("data-checks-count"),
+                  );
+                  $(".js_file_name").text(data.name);
+                  is_need_one_more_data = true;
+                  if (data["status"] == 13) {
+                    is_need_one_more_data = false;
+                    if (requests_total >= 1) {
+                      location.reload();
+                    }
+                    $(".js_progress_indicator").hide();
+                    $(".js_button_download").show();
+                    $(".js_button_billing").hide();
+                    $(".js_button_write_off").hide();
+                    $(".chart-container").show();
+                  } else if (data["status"] == 4 || data["status"] == 16) {
+                    is_need_one_more_data = false;
+                    if (requests_total >= 1) {
+                      location.reload();
+                    }
+                    $(".js_progress_indicator").hide();
+                    if (data.total_count > 0) {
+                      $(".js_tip_no_emails").hide();
+                      if (total_checks < data.total_count) {
+                        $(".js_button_download").hide();
+                        $(".js_button_billing").show();
+                        $(".js_button_write_off").hide();
+                      } else {
+                        $(".js_button_download").hide();
+                        $(".js_button_billing").hide();
+                        $(".js_button_write_off").show();
+                      }
+                    } else {
+                      $(".js_tip_no_emails").show();
+                      $(".js_button_download").hide();
+                      $(".js_button_billing").hide();
+                      $(".js_button_write_off").hide();
+                    }
+                    $(".chart-container").hide();
+                  } else if (
+                    data["status"] == 3 ||
+                    data["status"] == 15 ||
+                    data["status"] == 10 ||
+                    data["status"] == 12
+                  ) {
+                    $(".js_progress_indicator").hide();
+                    $(".js_tip_error").show();
+                    if (data["status"] == 3) {
+                      $(".js_error_details").text(
+                        "ERROR: Unable to extract emails from file",
+                      );
+                    } else if (data["status"] == 15) {
+                      $(".js_error_details").text(
+                        "ERROR: Unable to extract emails from file",
+                      );
+                    } else if (data["status"] == 10) {
+                      $(".js_error_details").text(
+                        "ERROR: Insufficient credits",
+                      );
+                    } else if (data["status"] == 12) {
+                      $(".js_error_details").text(
+                        "ERROR: Unable to store check results",
+                      );
+                    }
+                    $(".js_button_download").hide();
+                    $(".js_button_billing").hide();
+                    $(".js_button_write_off").hide();
+                    $(".chart-container").hide();
+                  } else {
+                    $(".js_button_billing").hide();
+                    $(".js_button_write_off").hide();
+                    $(".js_button_download").hide();
+                    $(".chart-container").hide();
+                  }
+                  $(".js_buttons_download").show();
+                  $(".js_checked_percentage").text(
+                    data.checked_percentage + "%",
+                  );
+                  $(".js_file_checks_need").text(data.total_count);
+                  $(".js_total_count").text(data.total_count);
+                  $(".js_unique_count").text(data.unique_count);
+                  if (data.unique_count > 0) {
+                    $(".js_unique_block").show();
+                  }
+                  $(".js_ok_count").text(data.ok_count);
+                  $(".js_wrong_count").text(data.wrong_count);
+                  $(".js_risky_count").text(data.risky_count);
+                  $(".js_unknown_count").text(data.unknown_count);
+                  if (data.total_count > 0) {
+                    $(".js_ok_count_p").text(
+                      "(" +
+                        Math.round((data.ok_count / data.total_count) * 100) +
+                        "%)",
+                    );
+                    $(".js_wrong_count_p").text(
+                      "(" +
+                        Math.round(
+                          (data.wrong_count / data.total_count) * 100,
+                        ) +
+                        "%)",
+                    );
+                    $(".js_risky_count_p").text(
+                      "(" +
+                        Math.round(
+                          (data.risky_count / data.total_count) * 100,
+                        ) +
+                        "%)",
+                    );
+                    $(".js_unknown_count_p").text(
+                      "(" +
+                        Math.round(
+                          (data.unknown_count / data.total_count) * 100,
+                        ) +
+                        "%)",
+                    );
+                  } else {
+                    $(".js_ok_count_p").text("(0%)");
+                    $(".js_wrong_count_p").text("(0%)");
+                    $(".js_risky_count_p").text("(0%)");
+                    $(".js_unknown_count_p").text("(0%)");
+                  }
+
+                  requests_total++;
+                  /*var result_data = {
+                            'deliverable': result_data.,
+                            'risky': Math.round(Math.random() * 100),
+                            'undeliverable': Math.round(Math.random() * 100),
+                            'procced': Math.round(Math.random() * 100),
+                        };*/
+                  var new_data = [];
+                  if (result_data.ok_count) {
+                    new_data.push([
+                      "Deliverable",
+                      parseInt(result_data.ok_count),
+                    ]);
+                  } else {
+                    new_data.push(["Deliverable", 0]);
+                  }
+                  if (result_data.unknown_count) {
+                    new_data.push([
+                      "Unknown",
+                      parseInt(result_data.unknown_count),
+                    ]);
+                  } else {
+                    new_data.push(["Unknown", 0]);
+                  }
+                  if (result_data.risky_count) {
+                    new_data.push(["Risky", parseInt(result_data.risky_count)]);
+                  } else {
+                    new_data.push(["Risky", 0]);
+                  }
+                  if (result_data.wrong_count) {
+                    new_data.push([
+                      "Undeliverable",
+                      parseInt(result_data.wrong_count),
+                    ]);
+                  } else {
+                    new_data.push(["Undeliverable", 0]);
+                  }
+                  if (
+                    parseInt(
+                      result_data.total_count -
+                        result_data.ok_count -
+                        result_data.wrong_count -
+                        result_data.risky_count -
+                        result_data.unknown_count,
+                    ) > 0
+                  ) {
+                    new_data.push([
+                      "Processing",
+                      parseInt(
+                        result_data.total_count -
+                          result_data.ok_count -
+                          result_data.wrong_count -
+                          result_data.risky_count -
+                          result_data.unknown_count,
+                      ),
+                    ]);
+                  }
+                  _series.setData(new_data, true);
+                  if (is_need_one_more_data) {
+                    setTimeout(function () {
+                      checkNextDatapart(_series);
+                    }, refresh_time);
+                  }
+                });
+              }
+              setTimeout(function () {
+                checkNextDatapart(series);
+              }, 100);
+            },
+          },
+        },
+        /*
+    colors: ['#13cb6e', '#79cf45', '#fdd42c', '#eaa449', '#fe6547', 'rgba(0, 0, 0, 0.05)'],
+*/
+        colors: [
+          "#13cb6e",
+          "#fdd42c",
+          "#eaa449",
+          "#fe6547",
+          "#bbbbbb",
+          "rgba(0, 0, 0, 0.05)",
+        ],
+        title: {
+          text: "",
+        },
+        tooltip: {
+          pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
+        },
+        plotOptions: {
+          pie: {
+            allowPointSelect: true,
+            cursor: "pointer",
+            dataLabels: {
+              enabled: true,
+              format: "<b>{point.name}</b>: {point.percentage:.1f} %",
+              style: {
+                color:
+                  (Highcharts.theme && Highcharts.theme.contrastTextColor) ||
+                  "black",
+              },
+            },
+          },
+        },
+        series: [
+          {
+            type: "pie",
+            name: "Quantity",
+            data: [
+              ["Deliverable", 0],
+              ["Unknown", 0],
+              ["Risky", 0],
+              ["Undeliverable", 0],
+              ["Processing", 3],
+            ],
+          },
+        ],
+      });
+    }
+    $(".js_button_write_off").click(function () {
+      var data = new Object();
+      data["file_id"] = $("prop[data-type=file_check_item]").attr("data-id");
+      send("/admin/check_file_ajax/" + data["file_id"], data, function () {
+        $("[data-file-check-id=" + file_id + "]").hide();
+      });
+    });
+  });
+</script>
+
+{% endblock inline_javascript %}

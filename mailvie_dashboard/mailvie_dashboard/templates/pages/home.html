@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+<!--  -->
+{% load static %} {% block center %}
+
+<div class="container row">
+  <div class="col-lg-12">
+    <div id="alerts"></div>
+  </div>
+  <div class="page-snippet clearfix">
+    <div class="col-lg-12">
+      <h1 class="p-title"></h1>
+    </div>
+    <div class="col-lg-9">
+      <!--RECENT CHECKING ITEMS-->
+      <h1 class="p-title">Recent checked lists</h1>
+      <div class="list-item list-item-header listing-head clearfix">
+        <div class="cl__2 f-left">
+          <div class="h-caption h-caption-date f-left">File Name</div>
+        </div>
+        <div class="cl__6 f-right">&nbsp;</div>
+        <div class="cl__5 f-right">
+          <div class="h-caption h-caption-date">Upload Date</div>
+        </div>
+        <div class="cl__4 f-right">
+          <div class="h-caption h-caption-status">
+            Item Status
+            <img
+              class="help-icon v-middle animate js_help_file_list_show"
+              height="16px"
+              width="16px"
+              src="{% static 'img/svg/info.svg' %}"
+            />
+          </div>
+        </div>
+        <div class="cl__3 f-right">
+          <div class="h-caption">Quantity</div>
+        </div>
+      </div>
+      <section
+        class="basic-section basic-section-separate list-group b-radius-tl b-radius-tr b-radius-bl b-radius-br"
+      >
+        <div class="list-item clearfix" data-file-check-id="37043960">
+          <div class="cl__2 f-left">
+            <div class="item-name f-left d-title digit">
+              <a href="{% url 'account_setting_view' %}">
+                <img
+                  class="doc-icon transition"
+                  src="{% static 'img/svg/doc.svg' %}"
+                />
+                emailtest.txt
+              </a>
+            </div>
+          </div>
+          <div class="cl__5 f-right">
+            <div class="item-date f-right color-light digit">
+              2024-11-05 09:04
+            </div>
+          </div>
+          <div class="cl__4 f-right">
+            <a href="">
+              <!--COMPLETED-->
+              <div class="item-status-cta ready-cta f-left transition">
+                <span class="img-wrap v-middle">
+                  <img
+                    class="v-middle"
+                    src="{% static 'img/svg/check_active_light.svg' %}"
+                  />
+                </span>
+                Completed
+              </div>
+            </a>
+          </div>
+          <div class="cl__3 f-right digit">3 items</div>
+        </div>
+
+        <div class="list-item clearfix" data-file-check-id="37043960">
+          <div class="cl__2 f-left">
+            <div class="item-name f-left d-title digit">
+              <a href="{% url 'account_setting_view' %}">
+                <img
+                  class="doc-icon transition"
+                  src="{% static 'img/svg/doc.svg' %}"
+                />
+                emailtest.txt
+              </a>
+            </div>
+          </div>
+          <div class="cl__5 f-right">
+            <div class="item-date f-right color-light digit">
+              2024-11-05 09:04
+            </div>
+          </div>
+          <div class="cl__4 f-right">
+            <a href="">
+              <!--ERROR-->
+              <div class="item-status-cta error-cta f-left transition">
+                <span class="img-wrap v-middle">
+                  <font color="#ffffff">❗</font>
+                </span>
+                Error
+              </div>
+            </a>
+          </div>
+          <div class="cl__3 f-right digit">0 items</div>
+        </div>
+      </section>
+    </div>
+    <div class="col-lg-3">
+      <section
+        class="basic-section list-group list-spacing b-radius-tl b-radius-tr b-radius-bl b-radius-br"
+      >
+        <div class="list-item list-item-header list-item-header-nt clearfix">
+          <div class="section-title f-left">
+            <strong>Your account</strong>
+            <a class="link" href="{% url 'account_setting_view' %}">edit</a>
+          </div>
+        </div>
+        <div class="list-item-auto portlet-item-user align-center">
+          <a href="{% url 'account_setting_view' %}">
+            <div class="animate user-avatar inline-b">
+              <img class="v-middle" src="{% static 'img/svg/user.svg' %}" />
+            </div>
+          </a>
+          <a class="user-name" href="{% url 'account_setting_view' %}">
+            inctifra
+          </a>
+          <span class="color-light">inctifra@gmail.com</span>
+        </div>
+      </section>
+      <section
+        class="basic-section list-group list-spacing b-radius-tl b-radius-tr b-radius-bl b-radius-br"
+      >
+        <div class="list-item list-item-header list-item-header-nt clearfix">
+          <div class="section-title f-left">
+            <strong>Checks on your account</strong>
+          </div>
+        </div>
+        <div class="list-item list-item-switcher clearfix">
+          <div class="checks-center-container">
+            <!--<div class="color-light f-small-13">active up to 20.12.2016</div>-->
+            <div class="v-middle total-counter">
+              <img
+                height="20px"
+                class="v-middle"
+                src="{% static 'img/svg/check_active.svg' %}"
+              />
+              <span class="balance-user">92</span>
+            </div>
+            <a href="{% url 'billing_view' %}" class="btn btn-primary"
+              >Purchase more</a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{% endblock center %} {% block inline_javascript %}
+
+<script type="text/javascript">
+  //DASHBOARD CHART
+</script>
+
+{% endblock inline_javascript %}

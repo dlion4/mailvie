@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "compat-api/css": "off",
+    "button-type": "off",
+    "no-inline-styles": "off",
+    "axe/structure": "off",
+    "disown-opener": "off",
+    "axe/text-alternatives": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-required-children": "off"
+      }
+    ]
+  }
+}

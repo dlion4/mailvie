@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block center %}
+<div class="container row">
+    <div class="col-lg-12">
+        <div id="alerts"></div>
+    </div>
+    <div class="page-snippet clearfix">
+        <div class="col-lg-12">
+            <h1 class="p-title">Single Verifying</h1>
+        </div>
+        <div class="col-lg-12">
+            <section class="basic-section single-ver b-radius-tl b-radius-tr b-radius-bl b-radius-br">
+                <form action="{% url 'mails:validate_single_email' %}" class="validate_email_moja">
+                    {% csrf_token %}
+                <div class="flex-cell">
+                    <span class="subscribe-icon">
+                        <img src="{% static 'img/svg/m_mail_ic.svg' %}" alt="mail-chip">
+                    </span>
+                </div>
+                <div class="flex-cell flex-cell-input">
+                    <input type="text" class="js_one_mail_check_email large-field" required
+                    name="email_check" placeholder="Enter single email for checking">
+                </div>
+                <div class="flex-cell">
+                    <button class="btn btn-submit-large btn-primary btn-marked js_one_mail_check_submit" data-toggle="tooltip" data-placement="left" data-original-title="1 check will be withdrawn">
+                        <div class="cssload-container js_one_mail_check_processing" style="display: none;">
+                            <div class="cssload-double-torus"></div>
+                        </div>
+                        <span class="caption">Let's proofy it!</span>
+                        <span class="mark">
+                            <img height="16px" class="v-middle" src="{% static 'img/svg/check_active_light.svg' %}">
+                            <span class="digit">1</span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+                <div class="results js_one_mail_check_results" style="display:none">
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>Result:&nbsp;&nbsp;</strong>
+                            </td>
+                            <td>
+                                <span>
+                                    <img class="js_one_mail_check_result_img js_one_mail_check_result_img_deliverable v-middle" height="18px" class="item-icon v-middle" src="{% static 'img/svg/check_active.svg' %}" style="display: none;">
+                                    <img class="js_one_mail_check_result_img js_one_mail_check_result_img_undeliverable v-middle" height="18px" class="item-icon v-middle" src="{% static 'img/svg/check_invalid.svg' %}" style="display: none;">
+                                    <span class="js_one_mail_check_result" style="display: none;">Deliverable</span>
+                                    |
+                                    <a class="link js_more">more info</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div class="advansed-info" style="display: none;">
+                                    <ul class="js_one_mail_check_more"></ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div class="col-lg-12">
+            <h1 class="p-title">List Verifying</h1>
+        </div>
+        <div class="col-lg-12">
+            <div id="drop-container" class="file-upload-container b-radius-tl b-radius-tr b-radius-bl b-radius-br b-all b-default">
+                <img class="v-middle upload-icon" src="{% static 'img/svg/doc-icon.svg' %}">
+                <h1 title="" class="up-title dark-text">Drag &amp; drop file here</h1>
+                <div class="t-text color-light">
+                    Choose a .txt or .csv file with email list
+                    <br>
+                    The limit for file size is 2097152 bytes.
+                    <br>
+                </div>
+                <div id="progress" class="progress js_upload_progress" style="display:none;">
+                    <div class="progress-bar progress-bar-striped active"></div>
+                </div>
+                <span class="btn btn-primary fileinput-button js_upload_button">
+                    <img class="v-middle" alt="Upload" src="{% static 'img/svg/upload.svg' %}">
+                    <span>Select file to upload</span>
+                    <input title="upload" id="fileupload" type="file" name="upload_check">
+                </span>
+                <!-- The container for the uploaded files -->
+                <div id="files" class="files"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock center %}
+
+{% block inline_javascript %}
+
+<script type="text/javascript">
+    function checkResult(cid) {
+        var check_time = 5000;
+        var urlapi = '/ajaxuser/form_get_result?cid=' + cid;
+        $.getJSON(urlapi, {}, function (chkresult) {
+            if (chkresult.checked) {
+                $('.balance-user').html(chkresult.balance);
+                $('.js_one_mail_check_result').text(chkresult.result[0].statusName);
+                $('.js_one_mail_check_result_img').hide();
+                $('.js_one_mail_check_result_img_' + chkresult.result[0].statusName).show();
+                $('.js_one_mail_check_more').text('');
+                if (chkresult.result[0].syntax == 1) {
+                    $('.js_one_mail_check_more').append('<li>' + 'Syntax - OK' + '</li>');
+                } else {
+                    $('.js_one_mail_check_more').append('<li>' + 'Syntax error' + '</li>');
+                }
+                if (chkresult.result[0].mx == 1) {
+                    $('.js_one_mail_check_more').append('<li>' + 'MX record exists - OK' + '</li>');
+                } else {
+                    $('.js_one_mail_check_more').append('<li>' + 'MX record NOT exists' + '</li>');
+                }
+                if (chkresult.result[0].role == 1) {
+                    $('.js_one_mail_check_more').append('<li>' + 'Role - yes' + '</li>');
+                } else {
+                    $('.js_one_mail_check_more').append('<li>' + 'Role - no' + '</li>');
+                }
+                if (chkresult.result[0].free == 1) {
+                    $('.js_one_mail_check_more').append('<li>' + 'Free - yes' + '</li>');
+                } else {
+                    $('.js_one_mail_check_more').append('<li>' + 'Free - no' + '</li>');
+                }
+                if (chkresult.result[0].disposable == 1) {
+                    $('.js_one_mail_check_more').append('<li>' + 'Disposable - yes' + '</li>');
+                } else {
+                    $('.js_one_mail_check_more').append('<li>' + 'Disposable - no' + '</li>');
+                }
+                $('.js_one_mail_check_processing').hide();
+                $('.js_one_mail_check_results').show();
+            } else {
+                setTimeout(function () {
+                    checkResult(cid);
+                }, check_time);
+            }
+        });
+    }
+  /*  $(document).ready(function () {
+        $('.js_one_mail_check_submit').click(function () {
+            var first_check_time = 2000;
+            $('.js_one_mail_check_processing').show();
+            $('.js_one_mail_check_results').hide();
+
+            var mail = $('.js_one_mail_check_email').val();
+            var url_verify = '/ajaxuser/form_verify_addr?email=' + mail;
+            $.getJSON(url_verify, {}, function (chkdata) {
+                if (chkdata.is_error) {
+                    alert(chkdata.errorDescr);
+                    $('.js_one_mail_check_processing').hide();
+                } else if (chkdata.cid) {
+                    $('.balance-user').html(chkdata.balance);
+                    setTimeout(function () {
+                        checkResult(chkdata.cid);
+                    }, first_check_time);
+                } else {
+                    alert('Unknown error');
+                    $('.js_one_mail_check_processing').hide();
+                }
+            });
+        });
+    });
+
+*/
+$(document).ready(function(){
+    $(".validate_email_moja").each(function(){
+        $(this).submit(function(event){
+            $('.js_one_mail_check_processing').show();
+            $('.js_one_mail_check_results').hide();
+            event.preventDefault();
+            var email = $(this).find("input[name='email_check']").val();
+            console.log(email)
+           
+            // Make the POST request and handle the JSON response
+            $.ajax({
+                url: $(this).attr("action"),  // Action URL of the form
+                method: 'POST',               // Use POST request
+                data: { email: email },       // Send email as data in the body
+                dataType: 'json',             // Expecting a JSON response
+                success: function(response) {
+                    // Hide processing indicator once the request is complete
+                    $('.js_one_mail_check_processing').hide();
+                    // Handle the response
+                    if (response.is_error) {
+                        // If there's an error in the response, handle accordingly
+                        console.log('Error: ', response.error_message);
+                        // You can show an error message or update the DOM with the error
+                        $('.js_one_mail_check_results').text(response.error_message).show();
+                    } else {
+                        // Handle successful response, update the DOM
+                        console.log('Success: ', response);
+                        var deliverabilityText;
+                        $('.js_one_mail_check_results').show(function(){
+                            if (response.is_email_valid){
+                                $(this).find(".js_one_mail_check_result_img_deliverable").show()
+                                deliverabilityText = "Deliverable"
+                            }else{
+                                $(this).find(".js_one_mail_check_result_img_undeliverable").show()
+                                deliverabilityText = "Undeliverable"
+                            }
+                            $(this).find(".js_one_mail_check_result").text(deliverabilityText).show()
+                        });
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // Handle failure case
+                    console.error('Request failed: ', textStatus, errorThrown);
+                    $('.js_one_mail_check_processing').hide();
+                    $('.js_one_mail_check_results').text('An error occurred while validating the email.').show();
+                }
+            });
+        })
+    })
+})
+</script>
+{% endblock inline_javascript %}
