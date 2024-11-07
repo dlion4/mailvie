@@ -43,13 +43,12 @@ def jwt_authentication_required(func):
 
 def validate_before_authorization(func):
     @wraps(func)
-    def wrapper(self, *args, **kwargs):
+    def wrapper(request, *args, **kwargs):
         logger = logging.getLogger("validation")
         try:
-            data = json.loads(self._request.body)
             response = requests.post(
                 f"{MAIN_DASHBOARD_ENDPOINT_URL}/api/users/validate",
-                json=data,
+                json=request.data,
                 timeout=5
             )
             response.raise_for_status()
@@ -67,5 +66,5 @@ def validate_before_authorization(func):
         except exceptions.PermissionDenied as e:
             logger.error(f"Authorization error: {e}")
             return Response({"message": str(e)}, status=status.HTTP_403_FORBIDDEN)
-        return func(self, *args, **kwargs)
+        return func(request, *args, **kwargs)
     return wrapper

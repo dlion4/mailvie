@@ -29,10 +29,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
     organizations = OrganizationSerializer(many=True, read_only=True)
 
     def create(self, validated_data):
+        print(validated_data)
         try:
-            with transaction.atomic():
-                user = User.objects.create_user(**validated_data)
-                return user
+            user = User.objects.create_user(**validated_data)
+            return user
         except Exception as e:
             raise serializers.ValidationError(f"Error creating user: {str(e)}")
 

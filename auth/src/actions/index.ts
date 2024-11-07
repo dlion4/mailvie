@@ -48,7 +48,7 @@ export const LoginUser = async ({ email, password, source="login" }: RegisterUse
 
 // Register user function
 export const RegisterUser = async ({ email, password, source="signup" }: RegisterUserType): Promise<any> => {
-    const data = await fetchHandler("/api/users/", createPostRequest({ email, password, source }));
+    const data = await fetchHandler("/api/auth/signup", createPostRequest({ email, password, source }));
     const { email: userEmail } = data;
     return { email: userEmail };
 };

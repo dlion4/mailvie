@@ -27,7 +27,6 @@ export class NotificationsGateway implements OnGatewayInit, OnGatewayConnection,
   }
   // Example function to send data to clients
   sendUpdate(data: any) {
-    console.log("sender data: ",data)
     this.server.emit('update', data); // Emit 'update' event with data
   }
 }

@@ -34,6 +34,7 @@ class ValidateUserAPIView(APIView):
         source = request.data.get("source", None)
         email = request.data.get("email")
         password = request.data.get("password")
+
         if not source:
             return self._error_response(
                 "Expected source", status.HTTP_417_EXPECTATION_FAILED)
@@ -59,7 +60,6 @@ class ValidateUserAPIView(APIView):
         if not email:
             return self._error_response(
                 "Expected email", status.HTTP_417_EXPECTATION_FAILED)
-
         password = data.get("password")
         if not password:
             return self._error_response(

@@ -14,6 +14,7 @@ from .serializers import (
     UserAuthenticationSerializer,
     RefreshTokenAccessRetrieveSerializer
 )
+from django.db import IntegrityError
 from rest_framework import generics, status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -48,6 +49,25 @@ class UserViewSet(
             decorated_method = validate_before_authorization(getattr(self, self.action))
             return decorated_method(request, *args, **kwargs)
         return super().dispatch(request, *args, **kwargs)
+
+
+@extend_schema(tags=["User Creation"])
+class CreateUserAPIView(generics.CreateAPIView):
+    """Creates a new user account"""
+    permission_classes = [AllowAny]
+    @method_decorator(validate_before_authorization)
+    def post(self, request, *args, **kwargs):
+        try:
+            user = User.objects.create_user(
+                email=request.data.get("email"),
+                password=request.data.get("password"),
+            )
+            user.save()
+            return Response(
+            {"message": "user created successfully"},
+            status=status.HTTP_201_CREATED)
+        except IntegrityError:
+            return Response({"message": "email already exists"}, status=status.HTTP_400_BAD_REQUEST)
 
 @extend_schema(tags=["Authorization Token"])
 class AuthorizeProvideTokenView(generics.CreateAPIView):

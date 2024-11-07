@@ -149,6 +149,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "mailvie_dashboard.users.middleware.EnsureAuthenticatedMiddleware",
 ]
 
 # STATIC
@@ -368,3 +369,5 @@ WEBPACK_LOADER = {
 EMAIL_VALIDATION_ENDPOINT = env.str("EMAIL_VALIDATION_ENDPOINT", "")
 
 WEBHOOK_SERVICE_PROVIDER_URL = env.str("WEBHOOK_SERVICE_PROVIDER_URL", "")
+
+AUTH_DOMAIN = env.str("AUTH_DOMAIN")
