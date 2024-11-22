@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import { ServerOptions } from 'socket.io';
 

@@ -78,6 +78,8 @@ class AuthorizeProvideTokenView(generics.CreateAPIView):
     def post(self, request:Request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
+        print(request.data)
+        
         try:
             user = User.objects.get(email=serializer.data.get("email"))
             if user.check_password(serializer.data.get("password")):

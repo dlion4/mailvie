@@ -1,4 +1,6 @@
 from functools import wraps
+
+from django.shortcuts import redirect
 from .services import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework import status
@@ -45,6 +47,7 @@ def validate_before_authorization(func):
     @wraps(func)
     def wrapper(request, *args, **kwargs):
         logger = logging.getLogger("validation")
+        print(request.data)
         try:
             response = requests.post(
                 f"{MAIN_DASHBOARD_ENDPOINT_URL}/api/users/validate",
@@ -52,8 +55,7 @@ def validate_before_authorization(func):
                 timeout=5
             )
             response.raise_for_status()
-            logger.debug("Data validation successful.")
-            logger.debug(f"External validation response: {response.json()}")
+            print("This is response: ", response.raw)
         except requests.exceptions.RequestException as e:
             logger.error(f"External validation service error: {e}")
             if e.response is not None:

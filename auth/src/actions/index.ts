@@ -47,19 +47,19 @@ export const LoginUser = async ({ email, password, source="login" }: RegisterUse
 };
 
 // Register user function
-export const RegisterUser = async ({ email, password, source="signup" }: RegisterUserType): Promise<any> => {
+export const RegisterUser = async ({ email, password, source="signup" }: RegisterUserType): Promise<unknown> => {
     const data = await fetchHandler("/api/auth/signup", createPostRequest({ email, password, source }));
     const { email: userEmail } = data;
     return { email: userEmail };
 };
 
 // Request password reset link function
-export const RequestPasswordResetLink = async (email: string): Promise<string | any> => {
+export const RequestPasswordResetLink = async (email: string): Promise<string | unknown> => {
     return await fetchHandler("/api/auth/password-reset-request", createPostRequest({ email }));
 };
 
 export const ResetPassword = async (
-    {password, password2, token}: {password:string, password2:string, token?:string}): Promise<any>=>{
+    {password, password2, token}: {password:string, password2:string, token?:string}): Promise<unknown>=>{
     return await fetchHandler(`/api/auth/password-reset/${token}`, createPostRequest({ password, password2 }));
 };
 

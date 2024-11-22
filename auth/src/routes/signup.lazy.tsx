@@ -67,7 +67,7 @@ function RegisterIndex() {
 
       navigate({ to: "/login" });
     },
-    onError: (error: any) => {
+    onError: (error: {message:string}) => {
       toast.error(error.message, {
         style: { backgroundColor: "#FFBABA", color: "#D8000C" },
       }); // Red for error)

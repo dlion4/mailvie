@@ -1,4 +1,5 @@
-import { Controller, Post, Body, Req } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Controller, Post, Req } from '@nestjs/common';
 import { AuthenticationService } from './authentication.service';
 
 @Controller('authentication')

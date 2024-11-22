@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable prettier/prettier */
 import {
   WebSocketServer,
   OnGatewayInit,
@@ -13,13 +16,13 @@ import { Server } from 'socket.io';
 export class NotificationsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer() server: Server;
   // @SubscribeMessage('message')
-  handleMessage(client: any, payload: any): string {
+  handleMessage(_client: any, _payload: any): string {
     return 'Hello world!';
   }
-  afterInit(server: Server) {
+  afterInit(_server: Server) {
     console.log('WebSocket initialized');
   }
-  handleConnection(client: any, ...args: any[]) {
+  handleConnection(client: any, ..._args: any[]) {
     console.log('Client connected:', client.id);
   }
   handleDisconnect(client: any) {

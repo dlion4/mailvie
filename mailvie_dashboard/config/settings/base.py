@@ -4,6 +4,8 @@
 from pathlib import Path
 
 import environ
+from corsheaders.defaults import default_headers
+from corsheaders.defaults import default_methods
 
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # mailvie_dashboard/
@@ -370,4 +372,21 @@ EMAIL_VALIDATION_ENDPOINT = env.str("EMAIL_VALIDATION_ENDPOINT", "")
 
 WEBHOOK_SERVICE_PROVIDER_URL = env.str("WEBHOOK_SERVICE_PROVIDER_URL", "")
 
-AUTH_DOMAIN = env.str("AUTH_DOMAIN")
+AUTH_DOMAIN = env.str("AUTH_DOMAIN", "")
+
+CORS_ALLOW_ALL_ORIGINS=True # TODO remove on production server
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://localhpst:5173",
+]
+
+CORS_ALLOW_METHODS = (
+    *default_methods,
+    "COBRA",
+)
+
+
+CORS_ALLOW_HEADERS = (
+    *default_headers,
+    "S-B-X-ApiKeyToken",
+)
